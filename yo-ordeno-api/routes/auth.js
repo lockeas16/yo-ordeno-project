@@ -58,12 +58,13 @@ router.post("/signup", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   const { username, password } = req.body;
-  User.findOne({ username })
+  User.findOne({ $and: [{ active: true }, { username }] })
     .then(user => {
       if (!user)
-        return res
-          .status(404)
-          .json({ error: {}, message: "Nombre de usuario no encontrado" });
+        return res.status(404).json({
+          error: {},
+          message: "Nombre de usuario no encontrado o sin confirmar"
+        });
       const isPasswordValid = bcrypt.compareSync(password, user.password);
       if (!isPasswordValid)
         return res

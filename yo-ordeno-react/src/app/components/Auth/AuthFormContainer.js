@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Signup from "./Signup";
 import { pwdValidator, notification } from "../../utils/utils";
+import { signup } from "../../services/authService";
 
 class AuthFormContainer extends Component {
   state = {
@@ -36,6 +37,31 @@ class AuthFormContainer extends Component {
     if (auth.password === "" || !pwdValidator(auth.password))
       return notification("Must provide a valid password");
     // pathname === "/signup" ? this.onSignup() : this.onLogin();
+    this.onSignup();
+  };
+
+  onSignup = () => {
+    let { auth } = this.state;
+    const { passwordConfirm, ...user } = auth;
+    signup(user)
+      .then(({ message }) => {
+        // enviar mensaje de confirmación de correo
+        auth = {
+          name: "",
+          lastname: "",
+          username: "",
+          email: "",
+          password: "",
+          passwordConfirm: ""
+        };
+        this.setState({ auth });
+        return notification(message);
+        // this.props.history.push("/profile");
+      })
+      .catch(error => {
+        console.log(error);
+        return notification(error.message);
+      });
   };
 
   render() {

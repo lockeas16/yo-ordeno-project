@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { pwdValidator } from "../../utils/utils";
 
 const Signup = ({
+  name,
+  lastname,
   username,
   email,
   password,
@@ -21,7 +23,48 @@ const Signup = ({
             onSubmit={handleSubmit}
           >
             <fieldset className="uk-fieldset">
-              <legend className="uk-legend uk-text-center">Registro</legend>
+              <legend className="uk-margin uk-legend uk-text-center">
+                Registro
+              </legend>
+              <div className="uk-grid-small" uk-grid="true">
+                <div>
+                  <div className="uk-margin inp-div">
+                    <input
+                      onChange={handleChange}
+                      className=" uk-width-1-1 inp-form"
+                      type="text"
+                      name="name"
+                      id="name"
+                      placeholder="Me llamo..."
+                      value={name}
+                      required
+                    />
+                    <label className="inp-label" htmlFor="name">
+                      Nombre(s)
+                    </label>
+                    <div className="underline uk-width-1-1" />
+                  </div>
+                </div>
+                <div>
+                  <div className="uk-margin inp-div">
+                    <input
+                      onChange={handleChange}
+                      className=" uk-width-1-1 inp-form"
+                      type="text"
+                      name="lastname"
+                      id="lastname"
+                      placeholder="Mi apellido paterno es..."
+                      value={lastname}
+                      required
+                    />
+                    <label className="inp-label" htmlFor="lastname">
+                      Apellido Paterno
+                    </label>
+                    <div className="underline uk-width-1-1" />
+                  </div>
+                </div>
+              </div>
+
               <div className="uk-margin inp-div">
                 <input
                   onChange={handleChange}

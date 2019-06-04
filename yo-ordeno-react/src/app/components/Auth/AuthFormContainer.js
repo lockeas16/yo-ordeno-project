@@ -5,6 +5,8 @@ import { pwdValidator, notification } from "../../utils/utils";
 class AuthFormContainer extends Component {
   state = {
     auth: {
+      name: "",
+      lastname: "",
       username: "",
       email: "",
       password: "",

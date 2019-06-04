@@ -58,7 +58,7 @@ class AuthFormContainer extends Component {
         return notification(message);
         // this.props.history.push("/profile");
       })
-      .catch(error => {
+      .catch(({ error }) => {
         console.log(error);
         return notification(error.message);
       });

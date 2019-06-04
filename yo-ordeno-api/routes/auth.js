@@ -51,6 +51,11 @@ router.post("/signup", (req, res, next) => {
         });
     })
     .catch(error => {
+      if (error.name === "MongoError" && error.code === 11000) {
+        error.message = `El usuario ${
+          newUser.username
+        } ya existe, escoger otro`;
+      }
       error.action = `Error al crear el usuario ${newUser.username}`;
       next(error);
     });

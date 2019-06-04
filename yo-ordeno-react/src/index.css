@@ -33,3 +33,56 @@ code {
 .logo-filter:hover {
   filter: brightness(1.2);
 }
+
+.inp-div {
+  position: relative;
+}
+
+.inp-form {
+  display: block;
+  width: 100%;
+  padding: 15px 10px 0;
+  border: none;
+  font-size: 14px;
+}
+
+.inp-form:focus {
+  outline: 0;
+}
+
+.inp-label {
+  position: absolute;
+  pointer-events: none;
+  top: 5px;
+  left: 10px;
+  font-size: 12px;
+  opacity: 0;
+  padding: 0 2px;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+.inp-form:valid + .inp-label {
+  opacity: 1;
+  top: -10px;
+  color: #9e9e9e;
+}
+
+.inp-form:focus + .inp-label {
+  color: #dd6515;
+}
+
+.underline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  border: 1px solid #e5e5e5;
+  z-index: -1;
+  padding: 10px 10px 0;
+}
+
+.inp-form:focus + .inp-label + .underline {
+  border-color: #dd6515;
+}

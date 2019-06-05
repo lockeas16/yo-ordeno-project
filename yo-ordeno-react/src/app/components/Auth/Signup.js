@@ -4,7 +4,6 @@ import { pwdValidator } from "../../utils/utils";
 const Signup = ({
   name,
   lastname,
-  username,
   email,
   password,
   passwordConfirm,
@@ -65,22 +64,6 @@ const Signup = ({
                 </div>
               </div>
 
-              <div className="uk-margin inp-div">
-                <input
-                  onChange={handleChange}
-                  className=" uk-width-1-1 inp-form"
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="myUserName"
-                  value={username}
-                  required
-                />
-                <label className="inp-label" htmlFor="username">
-                  Nombre de usuario
-                </label>
-                <div className="underline" />
-              </div>
               <div className="uk-margin inp-div">
                 <input
                   onChange={handleChange}

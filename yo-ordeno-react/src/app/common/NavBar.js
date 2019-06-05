@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import yoOrdenoLogo from "../assets/logo_transparent-crop.png";
+import Login from "../components/Auth/Login";
 
-const NavBar = ({ _id, email, username, handleLogout }) => {
+const NavBar = ({ _id, email, handleLogout }) => {
   return (
     <section className="uk-section uk-section-primary uk-section-xsmall uk-padding-remove-vertical">
       <div className="uk-container uk-container-expand">
@@ -28,7 +29,8 @@ const NavBar = ({ _id, email, username, handleLogout }) => {
             {!_id ? (
               <ul className="uk-navbar-nav">
                 <li>
-                  <Link to="/login">
+                  <Link to="#modal-login" uk-toggle="target: #modal-login">
+                    <Login />
                     <span className="lobster-family uk-text-large">
                       Iniciar sesion
                     </span>

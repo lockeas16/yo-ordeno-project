@@ -29,7 +29,7 @@ router.post("/signup", (req, res, next) => {
       let options = {
         email: newUser.email,
         subject: "Yo Ordeno - Verificación de correo",
-        user: newUser.username,
+        user: `${newUser.name} ${newUser.lastname}`,
         confirmationUrl: `${base_url}/auth/confirm/${randomToken}`
       };
       options.filename = "confirmation";
@@ -44,7 +44,7 @@ router.post("/signup", (req, res, next) => {
           });
         })
         .catch(error => {
-          error.action = `Error al crear el codigo de confirmacion para el usuario ${
+          error.action = `Error al crear el codigo de confirmacion para el correo ${
             newUser.email
           }`;
           next(error);
@@ -52,29 +52,33 @@ router.post("/signup", (req, res, next) => {
     })
     .catch(error => {
       if (error.name === "MongoError" && error.code === 11000) {
-        error.message = `El usuario ${
-          newUser.username
-        } ya existe, escoger otro`;
+        error.message = `Ya existe una cuenta con el correo electrónico ${
+          newUser.email
+        }`;
       }
-      error.action = `Error al crear el usuario ${newUser.username}`;
+      error.action = `Error al crear el usuario con correo electrónico ${
+        newUser.email
+      }`;
       next(error);
     });
 });
 
 router.post("/login", (req, res, next) => {
-  const { username, password } = req.body;
-  User.findOne({ $and: [{ active: true }, { username }] })
+  const { email, password } = req.body;
+  User.findOne({ $and: [{ active: true }, { email }] })
     .then(user => {
       if (!user)
         return res.status(404).json({
-          error: {},
-          message: "Nombre de usuario no encontrado o sin confirmar"
+          error: { message: "Correo electrónico no encontrado o sin confirmar" }
         });
       const isPasswordValid = bcrypt.compareSync(password, user.password);
       if (!isPasswordValid)
-        return res
-          .status(401)
-          .json({ error: {}, message: "Password inválido" });
+        return res.status(401).json({
+          error: {
+            message:
+              "Credenciales inválidas, correo electrónico o password incorrectos"
+          }
+        });
       // generacion de token
       jwt.sign(
         { id: user._id },
@@ -82,9 +86,9 @@ router.post("/login", (req, res, next) => {
         { expiresIn: process.env.TOKENLIFETIME },
         (error, token) => {
           if (error)
-            return res
-              .status(500)
-              .json({ error, message: "Error en la creación del token" });
+            return res.status(500).json({
+              error: { message: "Error en la creación del token" }
+            });
           user = authUtils.cleanUser(user._doc);
           res.status(200).json({ user, token });
         }

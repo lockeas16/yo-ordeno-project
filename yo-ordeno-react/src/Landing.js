@@ -31,6 +31,7 @@ class Landing extends Component {
             </div>
           </div>
         </section>
+
         {/* <section className="uk-section uk-section-large uk-overflow-hidden">
           <div className="uk-container">
             <h2 className="uk-heading-medium">

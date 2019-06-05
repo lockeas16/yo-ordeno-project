@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Signup from "./Signup";
-import { pwdValidator, notification } from "../../utils/utils";
+import { pwdValidator, notification, isValidEmail } from "../../utils/utils";
 import { signup } from "../../services/authService";
 
 class AuthFormContainer extends Component {
@@ -8,7 +8,6 @@ class AuthFormContainer extends Component {
     auth: {
       name: "",
       lastname: "",
-      username: "",
       email: "",
       password: "",
       passwordConfirm: ""
@@ -31,12 +30,10 @@ class AuthFormContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let { auth } = this.state;
-    // const { pathname } = this.props.location;
-    if (auth.username === "")
-      return notification("Must provide a valid username");
+    if (auth.email === "" || !isValidEmail(auth.email))
+      return notification("Proporciona un correo electrónico válido");
     if (auth.password === "" || !pwdValidator(auth.password))
-      return notification("Must provide a valid password");
-    // pathname === "/signup" ? this.onSignup() : this.onLogin();
+      return notification("Proporciona un password válido");
     this.onSignup();
   };
 
@@ -49,7 +46,6 @@ class AuthFormContainer extends Component {
         auth = {
           name: "",
           lastname: "",
-          username: "",
           email: "",
           password: "",
           passwordConfirm: ""

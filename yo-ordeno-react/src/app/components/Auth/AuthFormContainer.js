@@ -52,7 +52,6 @@ class AuthFormContainer extends Component {
         };
         this.setState({ auth });
         return notification(message);
-        // this.props.history.push("/profile");
       })
       .catch(({ error }) => {
         console.log(error);

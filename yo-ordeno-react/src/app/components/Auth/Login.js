@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { notification, isValidEmail } from "../../utils/utils";
 import { login } from "../../services/authService";
+import UIkit from "uikit";
 
 const handleSubmit = (e, auth) => {
+  e.preventDefault();
   if (auth.email === "" || !isValidEmail(auth.email))
     return notification("Proporciona un correo electrónico válido");
   if (auth.password === "")
@@ -42,11 +45,14 @@ const Login = () => {
           className="uk-modal-close-default"
           type="button"
           uk-close="true"
+          onSubmit={e => {
+            handleSubmit(e, auth);
+          }}
         />
         <form className="uk-form-stacked uk-width-1-1">
           <fieldset className="uk-fieldset">
             <legend className="uk-margin uk-legend uk-text-center">
-              Inicia sesión
+              Bienvenido!
             </legend>
             <div className="uk-margin inp-div">
               <input
@@ -88,15 +94,25 @@ const Login = () => {
               <button
                 type="submit"
                 className="uk-button uk-button-primary uk-width-1-2"
-                onClick={e => {
-                  handleSubmit(e, auth);
-                }}
               >
                 Iniciar sesión
               </button>
             </div>
           </fieldset>
         </form>
+        <div className="uk-text-center">
+          <span>¿Aún no tienes una cuenta?&#8194;</span>
+          <Link to="/signup" className="uk-link-text uk-text-primary">
+            <span
+              className="lobster-family uk-text-large"
+              onClick={() => {
+                UIkit.modal("#modal-login").hide();
+              }}
+            >
+              Registrarme
+            </span>
+          </Link>
+        </div>
       </div>
     </div>
   );

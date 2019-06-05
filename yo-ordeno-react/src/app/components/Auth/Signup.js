@@ -23,7 +23,7 @@ const Signup = ({
           >
             <fieldset className="uk-fieldset">
               <legend className="uk-margin uk-legend uk-text-center">
-                Registro
+                Crear una cuenta como dueño
               </legend>
               <div className="uk-grid-small" uk-grid="true">
                 <div>
@@ -90,7 +90,7 @@ const Signup = ({
                     !validPassword ? "uk-form-danger" : ""
                   }`}
                   type="password"
-                  placeholder="e.g. p4$22%W0_rD"
+                  placeholder="Password: e.g. p4$22%W0_rD"
                   name="password"
                   id="password"
                   value={password}
@@ -138,7 +138,7 @@ const Signup = ({
               )}
               <div className="uk-margin uk-flex uk-flex-center">
                 <button className="uk-button uk-button-primary uk-width-1-2">
-                  Submit
+                  Registrarme
                 </button>
               </div>
             </fieldset>

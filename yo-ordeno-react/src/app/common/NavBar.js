@@ -30,14 +30,14 @@ const NavBar = ({ _id, email, handleLogout }) => {
               <ul className="uk-navbar-nav">
                 <li>
                   <Link to="#modal-login" uk-toggle="target: #modal-login">
-                    <Login />
                     <span className="lobster-family uk-text-large">
                       Iniciar sesion
                     </span>
                   </Link>
+                  <Login />
                 </li>
                 <li>
-                  <Link to="/login">
+                  <Link to="/signup">
                     <span className="lobster-family uk-text-large">
                       Registro
                     </span>

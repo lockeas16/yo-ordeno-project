@@ -4,13 +4,13 @@ import { notification, isValidEmail } from "../../utils/utils";
 import { login } from "../../services/authService";
 import UIkit from "uikit";
 
-const handleSubmit = (e, auth) => {
+const handleSubmit = (e, auth, setUser) => {
   e.preventDefault();
   if (auth.email === "" || !isValidEmail(auth.email))
     return notification("Proporciona un correo electrónico válido");
   if (auth.password === "")
     return notification("Proporciona un password válido");
-  onLogin(auth);
+  onLogin(auth, setUser);
 };
 
 const handleChange = (e, auth, cb) => {
@@ -21,11 +21,12 @@ const handleChange = (e, auth, cb) => {
   cb(newAuthState);
 };
 
-const onLogin = auth => {
+const onLogin = (auth, setUser) => {
   login(auth)
     .then(({ user, token }) => {
-      console.log(user);
-      console.log(token);
+      localStorage.setItem("USER", JSON.stringify(user));
+      localStorage.setItem("TOKEN", token);
+      setUser(user);
     })
     .catch(({ error }) => {
       console.log(error);
@@ -33,23 +34,25 @@ const onLogin = auth => {
     });
 };
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const [auth, setAuth] = useState({
     email: "",
     password: ""
   });
   return (
     <div id="modal-login" className="uk-flex-top" uk-modal="true">
-      <div className="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+      <div className="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-width-large">
         <button
           className="uk-modal-close-default"
           type="button"
           uk-close="true"
-          onSubmit={e => {
-            handleSubmit(e, auth);
-          }}
         />
-        <form className="uk-form-stacked uk-width-1-1">
+        <form
+          className="uk-form-stacked uk-width-1-1"
+          onSubmit={e => {
+            handleSubmit(e, auth, setUser);
+          }}
+        >
           <fieldset className="uk-fieldset">
             <legend className="uk-margin uk-legend uk-text-center">
               Bienvenido!
@@ -91,10 +94,7 @@ const Login = () => {
               <div className="underline" />
             </div>
             <div className="uk-margin uk-flex uk-flex-center">
-              <button
-                type="submit"
-                className="uk-button uk-button-primary uk-width-1-2"
-              >
+              <button className="uk-button uk-button-primary uk-width-1-2">
                 Iniciar sesión
               </button>
             </div>

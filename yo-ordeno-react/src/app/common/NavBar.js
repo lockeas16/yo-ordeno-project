@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import yoOrdenoLogo from "../assets/logo_transparent-crop.png";
 import Login from "../components/Auth/Login";
 
-const NavBar = ({ _id, email, handleLogout }) => {
+const NavBar = ({ _id, handleLogout, setUser }) => {
   return (
     <section className="uk-section uk-section-primary uk-section-xsmall uk-padding-remove-vertical">
       <div className="uk-container uk-container-expand">
@@ -34,7 +34,7 @@ const NavBar = ({ _id, email, handleLogout }) => {
                       Iniciar sesion
                     </span>
                   </Link>
-                  <Login />
+                  <Login setUser={setUser} />
                 </li>
                 <li>
                   <Link to="/signup">
@@ -47,7 +47,11 @@ const NavBar = ({ _id, email, handleLogout }) => {
             ) : (
               <ul className="uk-navbar-nav">
                 <li onClick={handleLogout}>
-                  <a href="#">Cerrar sesion</a>
+                  <a href="#">
+                    <span className="lobster-family uk-text-large">
+                      Cerrar sesion
+                    </span>
+                  </a>
                 </li>
               </ul>
             )}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { notification, isValidEmail } from "../../utils/utils";
 import { login } from "../../services/authService";
 import UIkit from "uikit";
+import FormInput from "../../common/FormInput";
 
 const handleSubmit = (e, auth, setUser) => {
   e.preventDefault();
@@ -58,24 +59,14 @@ const Login = ({ setUser }) => {
             <legend className="uk-margin uk-legend uk-text-center">
               Bienvenido!
             </legend>
-            <div className="uk-margin inp-div">
-              <input
-                onChange={e => {
-                  handleChange(e, auth, setAuth);
-                }}
-                className="uk-width-1-1 inp-form"
-                type="email"
-                placeholder="micorreo@dominio.com"
-                name="email"
-                id="emailLogin"
-                value={auth.email}
-                required
-              />
-              <label className="inp-label" htmlFor="emailLogin">
-                Correo electrónico
-              </label>
-              <div className="underline" />
-            </div>
+            {/* prettier-ignore */}
+            <FormInput
+              handleChange={e => {
+                handleChange(e, auth, setAuth);
+              }}
+              type="email" name="email" id="emaiLogin" placeholder="micorreo@dominio.com" value={auth.email} label="Correo electrónico" required={true}
+            />
+
             <div className="uk-margin inp-div">
               <input
                 onChange={e => {

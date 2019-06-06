@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { pwdValidator } from "../../utils/utils";
+import FormInput from "../../common/FormInput";
 
 const Signup = ({
   name,
@@ -27,59 +28,18 @@ const Signup = ({
               </legend>
               <div className="uk-grid-small" uk-grid="true">
                 <div>
-                  <div className="uk-margin inp-div">
-                    <input
-                      onChange={handleChange}
-                      className=" uk-width-1-1 inp-form"
-                      type="text"
-                      name="name"
-                      id="name"
-                      placeholder="Me llamo..."
-                      value={name}
-                      required
-                    />
-                    <label className="inp-label" htmlFor="name">
-                      Nombre(s)
-                    </label>
-                    <div className="underline uk-width-1-1" />
-                  </div>
+                  {/* prettier-ignore */}
+                  <FormInput handleChange={handleChange} type="text" name="name" id="name" placeholder="Me llamo..." value={name} label="Nombre(s)" required={true}/>
                 </div>
                 <div>
-                  <div className="uk-margin inp-div">
-                    <input
-                      onChange={handleChange}
-                      className=" uk-width-1-1 inp-form"
-                      type="text"
-                      name="lastname"
-                      id="lastname"
-                      placeholder="Mi apellido paterno es..."
-                      value={lastname}
-                      required
-                    />
-                    <label className="inp-label" htmlFor="lastname">
-                      Apellido Paterno
-                    </label>
-                    <div className="underline uk-width-1-1" />
-                  </div>
+                  {/* prettier-ignore */}
+                  <FormInput handleChange={handleChange} type="text" name="lastname" id ="lastname" placeholder="Mi apellido paterno es..." value={lastname} label="Apellido Paterno" required={true}/>
                 </div>
               </div>
 
-              <div className="uk-margin inp-div">
-                <input
-                  onChange={handleChange}
-                  className="uk-width-1-1 inp-form"
-                  type="email"
-                  placeholder="micorreo@dominio.com"
-                  name="email"
-                  id="email"
-                  value={email}
-                  required
-                />
-                <label className="inp-label" htmlFor="email">
-                  Correo electrónico
-                </label>
-                <div className="underline" />
-              </div>
+              {/* prettier-ignore */}
+              <FormInput handleChange={handleChange} type="email" name="email" id="email" placeholder="micorreo@dominio.com" value={email} label="Correo electrónico" required={true}/>
+
               <div className="uk-margin inp-div">
                 <input
                   onChange={handleChange}

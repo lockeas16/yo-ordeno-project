@@ -27,6 +27,7 @@ const onLogin = (auth, setUser) => {
       localStorage.setItem("USER", JSON.stringify(user));
       localStorage.setItem("TOKEN", token);
       setUser(user);
+      UIkit.modal("#modal-login").hide();
     })
     .catch(({ error }) => {
       console.log(error);

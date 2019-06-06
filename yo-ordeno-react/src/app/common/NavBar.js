@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import yoOrdenoLogo from "../assets/logo_transparent-crop.png";
 import Login from "../components/Auth/Login";
+import blankProfile from "../assets/default-profile-480x480.png";
 
-const NavBar = ({ _id, handleLogout, setUser }) => {
+const NavBar = ({ _id, email, name, lastname, handleLogout, setUser }) => {
   return (
     <section className="uk-section uk-section-primary uk-section-xsmall uk-padding-remove-vertical">
       <div className="uk-container uk-container-expand">
@@ -34,7 +35,6 @@ const NavBar = ({ _id, handleLogout, setUser }) => {
                       Iniciar sesion
                     </span>
                   </Link>
-                  <Login setUser={setUser} />
                 </li>
                 <li>
                   <Link to="/signup">
@@ -45,17 +45,47 @@ const NavBar = ({ _id, handleLogout, setUser }) => {
                 </li>
               </ul>
             ) : (
-              <ul className="uk-navbar-nav">
-                <li onClick={handleLogout}>
-                  <a href="#">
-                    <span className="lobster-family uk-text-large">
-                      Cerrar sesion
-                    </span>
-                  </a>
-                </li>
-              </ul>
+              <React.Fragment>
+                <button
+                  className="uk-button uk-button-default uk-border-pill"
+                  type="button"
+                >
+                  {email}
+                </button>
+                <div uk-dropdown="mode: click">
+                  <ul className="uk-nav uk-dropdown-nav uk-nav-default uk-nav-center">
+                    <li>
+                      <div className="uk-card uk-card-small">
+                        <div className="uk-card-media-top">
+                          <img
+                            className="uk-border-circle"
+                            src={blankProfile}
+                            width="80"
+                            height="80"
+                            alt="profileImage"
+                          />
+                        </div>
+                        <div className="uk-card-body">
+                          <h3 className="uk-card-title">{`${name} ${lastname}`}</h3>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="#">Mi perfil</a>
+                    </li>
+                    <li>
+                      <a href="#">Mi restaurante</a>
+                    </li>
+                    <li className="uk-nav-divider" />
+                    <li onClick={handleLogout}>
+                      <a className="lobster-family">Cerrar sesion</a>
+                    </li>
+                  </ul>
+                </div>
+              </React.Fragment>
             )}
           </div>
+          <Login setUser={setUser} />
         </nav>
       </div>
     </section>

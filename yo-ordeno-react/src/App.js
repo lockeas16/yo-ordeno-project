@@ -8,13 +8,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     let user = JSON.parse(localStorage.getItem("USER"));
+    const token = localStorage.getItem("TOKEN");
     this.state = {
-      user
+      user,
+      token
     };
   }
 
   setUser = authUser => {
-    // as setState is an async function, we use a callback to update an object
     this.setState(prevState => {
       let user = authUser;
       return { user };

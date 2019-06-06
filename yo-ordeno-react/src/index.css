@@ -86,3 +86,8 @@ code {
 .inp-form:focus + .inp-label + .underline {
   border-color: #dd6515;
 }
+
+/* UIkit override */
+.uk-dropdown {
+  background: rgba(0, 0, 0, 0.5);
+}

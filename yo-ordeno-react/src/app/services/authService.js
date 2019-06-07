@@ -26,3 +26,12 @@ export const login = auth => {
       throw error.response.data;
     });
 };
+
+export const confirmation = token => {
+  return axios
+    .patch(`${base_url}/auth/confirm/${token}`)
+    .then(res => res.data)
+    .catch(error => {
+      throw error.response.data;
+    });
+};

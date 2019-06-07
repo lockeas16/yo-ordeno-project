@@ -87,6 +87,13 @@ code {
   border-color: #dd6515;
 }
 
+.bg-waiting {
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-image: url("./app/assets/Interwind-1s-200px.svg");
+}
+
 /* UIkit override */
 .uk-dropdown {
   background: rgba(0, 0, 0, 0.5);

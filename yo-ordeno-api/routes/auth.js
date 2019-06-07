@@ -10,7 +10,7 @@ const mailer = require("../helpers/mailer");
 
 // React pone una variable de entorno para saber el entorno y en base al entorno hacer peticiones al back
 const isProduction = process.env.NODE_ENV === "production";
-const base_url = isProduction ? "url_de_heroku" : "http://localhost:3000/api";
+const base_url = isProduction ? "url_de_heroku" : "http://localhost:3001";
 
 router.post("/signup", (req, res, next) => {
   // generamos hash para password
@@ -30,7 +30,7 @@ router.post("/signup", (req, res, next) => {
         email: newUser.email,
         subject: "Yo Ordeno - Verificación de correo",
         user: `${newUser.name} ${newUser.lastname}`,
-        confirmationUrl: `${base_url}/auth/confirm/${randomToken}`
+        confirmationUrl: `${base_url}/confirm/${randomToken}`
       };
       options.filename = "confirmation";
 
@@ -150,31 +150,22 @@ router.get("/loggedin", authUtils.verifyToken, (req, res) => {
   res.status(200).json({ message: "User login still valid" });
 });
 
-router.get("/confirm/:code", (req, res) => {
-  let { code } = req.params;
-  User.findOne({ confirmationCode: code })
+router.patch("/confirm/:token", (req, res, next) => {
+  let { token } = req.params;
+  User.findOne({ confirmationCode: token })
     .then(user => {
+      if (!user)
+        return res.status(404).json({
+          error: { message: "Token de confirmación no encontrado, verifica" }
+        });
       let { _id } = user;
       User.findByIdAndUpdate(_id, { $set: { active: true } }).then(user => {
-        // generacion de token
-        jwt.sign(
-          { id: user._id },
-          process.env.SECRET,
-          // valor en segundos
-          { expiresIn: process.env.TOKENLIFETIME },
-          (error, token) => {
-            if (error)
-              return res
-                .status(500)
-                .json({ error, message: "Error en la creación del token" });
-            user = authUtils.cleanUser(user._doc);
-            res.status(200).json({ user, token });
-          }
-        );
+        user = authUtils.cleanUser(user._doc);
+        res.status(200).json({ user });
       });
     })
     .catch(error => {
-      error.action = `Error en la creación del token ${code} para confirmación de usuario`;
+      error.action = `Error en la confirmación de usuario para token ${token}`;
       next(error);
     });
 });

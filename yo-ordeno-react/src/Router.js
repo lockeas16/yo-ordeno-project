@@ -2,6 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Landing from "./Landing";
 import AuthFormContainer from "./app/components/Auth/AuthFormContainer";
+import ConfirmationContainer from "./app/components/Auth/ConfirmationContainer";
+
 // import ProfileContainer from "./components/profile/ProfileContainer";
 
 const Router = () => (
@@ -11,6 +13,11 @@ const Router = () => (
       exact
       path="/signup"
       render={props => <AuthFormContainer {...props} />}
+    />
+    <Route
+      exact
+      path="/confirm/:token"
+      render={props => <ConfirmationContainer {...props} />}
     />
     {/*
     <Route

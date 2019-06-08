@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import yoOrdenoLogo from "../assets/logo_transparent-crop.png";
 import Login from "../components/Auth/Login";
 import blankProfile from "../assets/default-profile-480x480.png";
 
-const NavBar = ({ _id, email, name, lastname, handleLogout, setUser }) => {
+// prettier-ignore
+const NavBar = ({ _id, email, name, lastname, handleLogout, setUser, history }) => {
+  console.log(history);
   return (
     <section className="uk-section uk-section-primary uk-section-xsmall uk-padding-remove-vertical">
       <div className="uk-container uk-container-expand">
@@ -85,11 +87,11 @@ const NavBar = ({ _id, email, name, lastname, handleLogout, setUser }) => {
               </React.Fragment>
             )}
           </div>
-          <Login setUser={setUser} />
+          <Login setUser={setUser} history={history}/>
         </nav>
       </div>
     </section>
   );
 };
 
-export default NavBar;
+export default withRouter(NavBar);

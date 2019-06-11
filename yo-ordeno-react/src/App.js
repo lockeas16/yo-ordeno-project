@@ -8,10 +8,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     let user = JSON.parse(localStorage.getItem("USER"));
-    const token = localStorage.getItem("TOKEN");
+    if (!user) user = {};
     this.state = {
-      user,
-      token
+      user
     };
   }
 
@@ -40,7 +39,7 @@ class App extends Component {
           handleLogout={this.handleLogout}
           setUser={this.setUser}
         />
-        <Router />
+        <Router user={user} setUser={this.setUser} />
         <Footer />
       </div>
     );

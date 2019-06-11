@@ -29,7 +29,7 @@ const onLogin = (auth, setUser, history) => {
       localStorage.setItem("TOKEN", token);
       setUser(user);
       UIkit.modal("#modal-login").hide();
-      history.push("/");
+      history.push("/profile");
     })
     .catch(({ error }) => {
       console.log(error);

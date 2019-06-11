@@ -119,7 +119,7 @@ router.post(
   }
 );
 
-router.post(
+router.patch(
   "/edit",
   authUtils.verifyToken,
   uploader.single("image"),

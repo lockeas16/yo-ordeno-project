@@ -94,6 +94,11 @@ code {
   background-image: url("./app/assets/Interwind-1s-200px.svg");
 }
 
+.imageProfile{
+  width: 200px;
+  height: 200px;
+}
+
 /* UIkit override */
 .uk-dropdown {
   background: rgba(0, 0, 0, 0.5);

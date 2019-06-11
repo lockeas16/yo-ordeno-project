@@ -1,9 +1,9 @@
 import axios from "axios";
 
 // Creamos el header con el token
-axios.defaults.headers = {
-  Authorization: localStorage.getItem("TOKEN")
-};
+// axios.defaults.headers = {
+//   Authorization: localStorage.getItem("TOKEN")
+// };
 
 // React pone una variable de entorno para saber el entorno y en base al entorno hacer peticiones al back
 const isProduction = process.env.NODE_ENV === "production";
@@ -30,6 +30,20 @@ export const login = auth => {
 export const confirmation = token => {
   return axios
     .patch(`${base_url}/auth/confirm/${token}`)
+    .then(res => res.data)
+    .catch(error => {
+      throw error.response.data;
+    });
+};
+
+export const edit = user => {
+  return axios
+    .patch(`${base_url}/auth/edit`, user, {
+      headers: {
+        Authorization: localStorage.getItem("TOKEN"),
+        "Content-Type": "multipart/form-data"
+      }
+    })
     .then(res => res.data)
     .catch(error => {
       throw error.response.data;

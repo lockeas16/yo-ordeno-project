@@ -5,8 +5,7 @@ import Login from "../components/Auth/Login";
 import blankProfile from "../assets/default-profile-480x480.png";
 
 // prettier-ignore
-const NavBar = ({ _id, email, name, lastname, handleLogout, setUser, history }) => {
-  console.log(history);
+const NavBar = ({ _id, email, name,image, lastname, handleLogout, setUser, history }) => {
   return (
     <section className="uk-section uk-section-primary uk-section-xsmall uk-padding-remove-vertical">
       <div className="uk-container uk-container-expand">
@@ -61,7 +60,7 @@ const NavBar = ({ _id, email, name, lastname, handleLogout, setUser, history }) 
                         <div className="uk-card-media-top">
                           <img
                             className="uk-border-circle"
-                            src={blankProfile}
+                            src={image || blankProfile}
                             width="80"
                             height="80"
                             alt="profileImage"
@@ -73,10 +72,10 @@ const NavBar = ({ _id, email, name, lastname, handleLogout, setUser, history }) 
                       </div>
                     </li>
                     <li>
-                      <a href="#">Mi perfil</a>
+                      <Link to="/profile">Mi perfil</Link>
                     </li>
                     <li>
-                      <a href="#">Mi restaurante</a>
+                      <Link to="/restaurant">Mi restaurante</Link>
                     </li>
                     <li className="uk-nav-divider" />
                     <li onClick={handleLogout}>

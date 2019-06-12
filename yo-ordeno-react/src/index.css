@@ -99,6 +99,11 @@ code {
   height: 200px;
 }
 
+.imageCard{
+  width: 80px;
+  height: 80px;
+}
+
 /* UIkit override */
 .uk-dropdown {
   background: rgba(0, 0, 0, 0.5);

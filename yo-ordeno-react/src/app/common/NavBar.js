@@ -59,10 +59,8 @@ const NavBar = ({ _id, email, name,image, lastname, handleLogout, setUser, histo
                       <div className="uk-card uk-card-small">
                         <div className="uk-card-media-top">
                           <img
-                            className="uk-border-circle"
+                            className="uk-border-circle imageCard"
                             src={image || blankProfile}
-                            width="80"
-                            height="80"
                             alt="profileImage"
                           />
                         </div>
@@ -75,7 +73,7 @@ const NavBar = ({ _id, email, name,image, lastname, handleLogout, setUser, histo
                       <Link to="/profile">Mi perfil</Link>
                     </li>
                     <li>
-                      <Link to="/restaurant">Mi restaurante</Link>
+                      <Link to="/dashboard">Dashboard</Link>
                     </li>
                     <li className="uk-nav-divider" />
                     <li onClick={handleLogout}>

@@ -4,6 +4,7 @@ import Landing from "./Landing";
 import AuthFormContainer from "./app/components/Auth/AuthFormContainer";
 import ConfirmationContainer from "./app/components/Auth/ConfirmationContainer";
 import ProfileContainer from "./app/components/Profile/ProfileContainer";
+import DashboardContainer from "./app/components/Dashboard/DashboardContainer";
 
 const Router = ({ user, setUser }) => (
   <Switch>
@@ -24,6 +25,14 @@ const Router = ({ user, setUser }) => (
       path="/profile"
       render={props => (
         <ProfileContainer {...props} user={user} setUser={setUser} />
+      )}
+    />
+
+    <Route
+      exact
+      path="/dashboard"
+      render={props => (
+        <DashboardContainer {...props} user={user} setUser={setUser} />
       )}
     />
   </Switch>

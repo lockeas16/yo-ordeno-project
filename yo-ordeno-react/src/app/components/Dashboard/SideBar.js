@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { FaAppleAlt, FaPencilAlt, FaTable } from "react-icons/fa";
 
 const SideBar = () => (
   <section
@@ -22,23 +23,29 @@ const SideBar = () => (
             className="uk-offcanvas-close uk-link-heading"
           />
           <ul className="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
-            <li className="uk-active">
-              <NavLink to="/all-beers">
-                <span className="uk-margin-small-right" uk-icon="icon: world" />
+            <li>
+              <NavLink to="/dashboard/dishes">
+                <span className="uk-margin-small-right uk-icon">
+                  <FaAppleAlt />
+                </span>
                 Platillos
               </NavLink>
             </li>
             <li className="uk-nav-divider" />
             <li className="uk-parent">
-              <NavLink to="/ranbom-beer">
-                <span className="uk-margin-small-right" uk-icon="icon: bolt" />
+              <NavLink to="/dashboard/newdish">
+                <span className="uk-margin-small-right uk-icon">
+                  <FaPencilAlt />
+                </span>
                 Alta platillo
               </NavLink>
             </li>
             <li className="uk-nav-divider" />
             <li className="uk-parent">
-              <NavLink to="/tables">
-                <span className="uk-margin-small-right" uk-icon="icon: plus" />
+              <NavLink to="/dashboard/tables">
+                <span className="uk-margin-small-right uk-icon">
+                  <FaTable />
+                </span>
                 Mesas
               </NavLink>
             </li>
@@ -48,5 +55,4 @@ const SideBar = () => (
     </div>
   </section>
 );
-
 export default SideBar;

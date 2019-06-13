@@ -79,6 +79,7 @@ const Login = ({ setUser, history }) => {
                 name="password"
                 id="passwordLogin"
                 value={auth.password}
+                autoComplete="current-password"
                 required
               />
               <label className="inp-label" htmlFor="passwordLogin">

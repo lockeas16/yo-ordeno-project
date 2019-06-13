@@ -38,9 +38,9 @@ const Profile = ({
     <form onSubmit={handleSubmit}>
       <fieldset className="uk-fieldset">
         {/* prettier-ignore */}
-        <FormInput handleChange={handleChange} type="text" name="name" id="nameProfile" placeholder={"false"} value={name} label="Nombre(s)" required={true}/>
+        <FormInput handleChange={handleChange} type="text" name="name" id="nameProfile" placeholder={false} value={name} label="Nombre(s)" required={true}/>
         {/* prettier-ignore */}
-        <FormInput handleChange={handleChange} type="text" name="lastname" id="lastnameProfile" placeholder={"false"} value={lastname} label="Apellido paterno" required={true}/>
+        <FormInput handleChange={handleChange} type="text" name="lastname" id="lastnameProfile" placeholder={false} value={lastname} label="Apellido paterno" required={true}/>
         <div className="uk-margin uk-flex uk-flex-center">
           <button className="uk-button uk-button-primary uk-width-1-2">
             Actualizar perfil

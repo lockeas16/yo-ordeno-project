@@ -20,15 +20,7 @@ const DishSchema = new Schema(
       required: true
     },
     category: {
-      type: String,
-      enum: [
-        "Appetizers",
-        "Salads",
-        "Beverage",
-        "Breakfast",
-        "Meal",
-        "Desserts"
-      ]
+      type: String
     },
     available: {
       type: Boolean,

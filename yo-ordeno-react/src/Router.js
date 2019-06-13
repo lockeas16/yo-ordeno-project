@@ -29,7 +29,6 @@ const Router = ({ user, setUser }) => (
     />
 
     <Route
-      exact
       path="/dashboard"
       render={props => (
         <DashboardContainer {...props} user={user} setUser={setUser} />

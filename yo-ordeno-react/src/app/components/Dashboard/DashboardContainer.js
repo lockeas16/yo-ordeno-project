@@ -1,24 +1,29 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import SideBar from "./SideBar";
-import Dish from "./Dish";
-import MenuArrow from "../../common/MenuArrow";
+import Dishes from "./Dishes";
+import DishForm from "./DishForm";
 
 class DashboardContainer extends Component {
-  state = {};
   render() {
     return (
       <div className="uk-flex uk-flex-row">
-        <MenuArrow
-          onClick={e => {
-            console.log(e.target);
-            e.target.classList.toggle("bt-menu-open");
-          }}
-        >
-          <span />
-        </MenuArrow>
         <SideBar />
-        {/* aqui va router */}
-        <Dish />
+        <Route
+          exact
+          path={`${this.props.match.path}/`}
+          render={props => <Dishes {...props} />}
+        />
+        <Route
+          exact
+          path={`${this.props.match.path}/dishes`}
+          render={props => <Dishes {...props} />}
+        />
+        <Route
+          exact
+          path={`${this.props.match.path}/newdish`}
+          render={props => <DishForm {...props} />}
+        />
       </div>
     );
   }

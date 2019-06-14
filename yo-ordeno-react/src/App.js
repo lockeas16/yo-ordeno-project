@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import "./App.css";
 import Router from "./Router";
 import NavBar from "./app/common/NavBar";
@@ -27,7 +28,7 @@ class App extends Component {
     let { user } = this.state;
     user = {};
     this.setState({ user });
-    window.location.reload();
+    this.props.history.push("/");
   };
 
   render() {
@@ -46,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

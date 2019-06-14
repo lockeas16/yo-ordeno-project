@@ -7,7 +7,7 @@ const FormInput = ({ handleChange, name, id, type, placeholder, value, label, re
       onChange={handleChange}
       className="uk-width-1-1 inp-form"
       type={type}
-      placeholder={placeholder ==="false" ? "" : placeholder}
+      placeholder={placeholder === "false" ? undefined : placeholder}
       name={name}
       id={id}
       value={value}

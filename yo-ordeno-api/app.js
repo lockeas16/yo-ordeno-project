@@ -67,5 +67,7 @@ const index = require("./routes/index");
 app.use("/", index);
 const auth = require("./routes/auth");
 app.use("/api/auth", auth);
+const dish = require("./routes/dish");
+app.use("/api/dish", dish);
 
 module.exports = app;

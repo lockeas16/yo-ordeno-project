@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const Restaurant = require("../models/Restaurant");
 const authUtils = require("../helpers/auth");
 const uploader = require("../helpers/multer");
 const crypto = require("crypto");
@@ -79,20 +80,29 @@ router.post("/login", (req, res, next) => {
               "Credenciales inválidas, correo electrónico o password incorrectos"
           }
         });
-      // generacion de token
-      jwt.sign(
-        { id: user._id },
-        process.env.SECRET,
-        { expiresIn: process.env.TOKENLIFETIME },
-        (error, token) => {
-          if (error)
-            return res.status(500).json({
-              error: { message: "Error en la creación del token" }
-            });
-          user = authUtils.cleanUser(user._doc);
-          res.status(200).json({ user, token });
-        }
-      );
+      // crear un restaurante por default, que despues podria ser editado
+      Restaurant.findOne({ owner: user._id })
+        .then(rest => {
+          // generacion de token
+          jwt.sign(
+            { id: user._id },
+            process.env.SECRET,
+            { expiresIn: process.env.TOKENLIFETIME },
+            (error, token) => {
+              if (error)
+                return res.status(500).json({
+                  error: { message: "Error en la creación del token" }
+                });
+              user = authUtils.cleanUser(user._doc);
+              user.restaurant = rest._id;
+              res.status(200).json({ user, token });
+            }
+          );
+        })
+        .catch(error => {
+          error.action = "Error recuperando datos del restaurante";
+          next(error);
+        });
     })
     .catch(error => {
       error.action = "Error durante el proceso de login";
@@ -160,8 +170,19 @@ router.patch("/confirm/:token", (req, res, next) => {
         });
       let { _id } = user;
       User.findByIdAndUpdate(_id, { $set: { active: true } }).then(user => {
-        user = authUtils.cleanUser(user._doc);
-        res.status(200).json({ user });
+        let restaurant = {
+          owner: _id
+        };
+        Restaurant.create(restaurant)
+          .then(rest => {
+            user = authUtils.cleanUser(user._doc);
+            user.restaurant_id = rest._id;
+            res.status(200).json({ user });
+          })
+          .catch(error => {
+            error.action = `Error en la creacion de los datos de restaurante para usuario con token ${token}`;
+            next(error);
+          });
       });
     })
     .catch(error => {

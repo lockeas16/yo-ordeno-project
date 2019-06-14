@@ -52,6 +52,7 @@ class ProfileContainer extends Component {
 
   setImage = e => {
     const image = e.target.files[0];
+    if (!image) return;
     const formData = new FormData();
     formData.append("image", image);
     let reader = new FileReader();

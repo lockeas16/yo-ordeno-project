@@ -9,15 +9,8 @@ const RestaurantSchema = new Schema(
     },
     name: {
       type: String,
-      required: true
-    },
-    description: String,
-    location: {
-      type: {
-        type: String,
-        default: "Point"
-      },
-      coordinates: [Number]
+      required: true,
+      default: "Mi Restaurante"
     }
   },
   { timestamps: true }

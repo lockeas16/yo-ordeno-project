@@ -12,8 +12,7 @@ const DishSchema = new Schema(
       required: true
     },
     description: {
-      type: String,
-      required: true
+      type: String
     },
     price: {
       type: Number,
@@ -29,6 +28,9 @@ const DishSchema = new Schema(
         "Bebidas",
         "Platillo principal"
       ]
+    },
+    image: {
+      type: String
     },
     available: {
       type: Boolean,

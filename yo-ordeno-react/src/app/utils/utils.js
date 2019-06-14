@@ -15,10 +15,10 @@ export const pwdValidator = password => {
   return schema.validate(password);
 };
 
-export const notification = message => {
+export const notification = (message, status = "danger") => {
   UIkit.notification({
     message: `<div class='uk-text-center'><span>${message}</span></div>`,
-    status: "danger",
+    status: status,
     pos: "top-center",
     timeout: 2000
   });

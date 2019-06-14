@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import yoOrdenoLogo from "../assets/logo_transparent-crop.png";
 import Login from "../components/Auth/Login";
 import blankProfile from "../assets/default-profile-480x480.png";
+import UIkit from "uikit";
 
 // prettier-ignore
 const NavBar = ({ _id, email, name,image, lastname, handleLogout, setUser, history }) => {
@@ -53,7 +54,7 @@ const NavBar = ({ _id, email, name,image, lastname, handleLogout, setUser, histo
                 >
                   {email}
                 </button>
-                <div uk-dropdown="mode: click">
+                <div uk-dropdown="mode: click" id="drop-menu">
                   <ul className="uk-nav uk-dropdown-nav uk-nav-default uk-nav-center">
                     <li>
                       <div className="uk-card uk-card-small">
@@ -70,10 +71,14 @@ const NavBar = ({ _id, email, name,image, lastname, handleLogout, setUser, histo
                       </div>
                     </li>
                     <li>
-                      <Link to="/profile">Mi perfil</Link>
+                      <Link to="/profile" onClick={()=>{
+                        UIkit.dropdown("#drop-menu").hide();
+                      }}>Mi perfil</Link>
                     </li>
                     <li>
-                      <Link to="/dashboard">Dashboard</Link>
+                      <Link to="/dashboard" onClick={()=>{
+                        UIkit.dropdown("#drop-menu").hide();
+                      }}>Dashboard</Link>
                     </li>
                     <li className="uk-nav-divider" />
                     <li onClick={handleLogout}>

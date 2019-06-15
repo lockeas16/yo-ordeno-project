@@ -86,10 +86,13 @@ class DashboardContainer extends Component {
     dish._id ? this.edit(formData, dish._id) : this.create(formData);
   };
 
-  handleDelete = id => {
+  handleDelete = (e, id, idNode) => {
     deleteDish(id)
       .then(data => {
-        console.log(data);
+        let { dishes } = this.state;
+        dishes.splice(idNode, 1);
+        this.setState({ dishes });
+        notification(data.message, "success");
       })
       .catch(error => {
         console.log(error);
@@ -99,6 +102,8 @@ class DashboardContainer extends Component {
   create = formData => {
     newDish(formData)
       .then(data => {
+        let { dishes } = this.state;
+        dishes.push(data.dish);
         const dish = {
           name: "",
           description: "",
@@ -109,6 +114,7 @@ class DashboardContainer extends Component {
         const formData = new FormData();
         this.setState({ dish });
         this.setState({ formData });
+        this.setState({ dishes });
         notification(data.message, "success");
       })
       .catch(error => {

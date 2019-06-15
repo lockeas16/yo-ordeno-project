@@ -14,7 +14,12 @@ const Dishes = ({ dishes, handleDelete }) => (
       >
         {dishes &&
           dishes.map((dish, index) => (
-            <DishCard key={index} {...dish} handleDelete={handleDelete} />
+            <DishCard
+              key={index}
+              {...dish}
+              handleDelete={handleDelete}
+              idNode={index}
+            />
           ))}
       </div>
     </div>

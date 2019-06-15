@@ -1,8 +1,7 @@
 import React from "react";
-import UIkit from "uikit";
 
-const DeleteDish = ({ handleDelete, id }) => (
-  <div id="delete-dish" className="uk-flex-top" uk-modal="true">
+const DeleteDish = ({ handleDelete, _id, idNode }) => (
+  <div id={`delete-dish-${idNode}`} className="uk-flex-top" uk-modal="true">
     <div className="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-width-large">
       <button
         className="uk-modal-close-default"
@@ -15,9 +14,8 @@ const DeleteDish = ({ handleDelete, id }) => (
       <div className="uk-text-center">
         <button
           className="uk-button uk-button-danger uk-margin-small-right uk-modal-close"
-          onClick={() => {
-            handleDelete(id);
-            // UIkit.modal("#delete-dish").hide();
+          onClick={e => {
+            handleDelete(e, _id, idNode);
           }}
         >
           Eliminar
@@ -25,20 +23,8 @@ const DeleteDish = ({ handleDelete, id }) => (
         <button className="uk-button uk-button-default uk-modal-close">
           Cancelar
         </button>
-
-        {/* <Link to="/signup" className="uk-link-text uk-text-primary">
-            <span
-              className="lobster-family uk-text-large"
-              onClick={() => {
-                UIkit.modal("#modal-login").hide();
-              }}
-            >
-              Registrarme
-            </span>
-          </Link> */}
       </div>
     </div>
   </div>
 );
-
 export default DeleteDish;

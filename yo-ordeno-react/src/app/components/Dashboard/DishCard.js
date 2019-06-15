@@ -4,18 +4,12 @@ import defaultImage from "../../assets/defaultMeal.png";
 import { FaTrash } from "react-icons/fa";
 import DeleteDish from "./DeleteDish";
 
-const DishCard = ({
-  image,
-  name,
-  category,
-  price,
-  description,
-  _id,
-  handleDelete
-}) => (
+// prettier-ignore
+const DishCard = ({ image, name, category, price, description, _id, idNode, handleDelete }) => 
+(
   <div>
     <div className="uk-card uk-card-default uk-card-small uk-box-shadow-large">
-      <div className="uk-card-badge" uk-toggle="target: #delete-dish">
+      <div className="uk-card-badge" uk-toggle={`target: #delete-dish-${idNode}`}>
         <FaTrash />
       </div>
       <div className="uk-card-media-top uk-text-center">
@@ -53,7 +47,7 @@ const DishCard = ({
         </Link>
       </div>
     </div>
-    <DeleteDish handleDelete={handleDelete} id={_id} />
+    <DeleteDish handleDelete={handleDelete} _id={_id} idNode={idNode} />
   </div>
 );
 

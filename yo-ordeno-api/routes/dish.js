@@ -22,6 +22,7 @@ router.post(
     Dish.create(newDish)
       .then(dish => {
         return res.status(200).json({
+          dish,
           message: "Platillo creado de manera exitosa"
         });
       })

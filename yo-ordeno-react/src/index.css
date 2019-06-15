@@ -104,6 +104,11 @@ code {
   height: 80px;
 }
 
+.hoverTrash:hover{
+  color: #ca5e16;
+  transition: all 0.2s ease-in-out;
+}
+
 /* UIkit override */
 .uk-dropdown {
   background: rgba(0, 0, 0, 0.5);

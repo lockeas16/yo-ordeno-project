@@ -10,7 +10,9 @@ const DishCard = ({ image, name, category, price, description, _id, idNode, hand
   <div>
     <div className="uk-card uk-card-default uk-card-small uk-box-shadow-large">
       <div className="uk-card-badge" uk-toggle={`target: #delete-dish-${idNode}`}>
-        <FaTrash />
+        <div className="hoverTrash">
+          <FaTrash />
+        </div>
       </div>
       <div className="uk-card-media-top uk-text-center">
         <img

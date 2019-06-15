@@ -76,8 +76,10 @@ class DashboardContainer extends Component {
 
     for (const field in dish) {
       if (dish.hasOwnProperty(field)) {
-        const element = dish[field];
-        formData.append(field, element);
+        if (field !== "image") {
+          const element = dish[field];
+          formData.append(field, element);
+        }
       }
     }
 

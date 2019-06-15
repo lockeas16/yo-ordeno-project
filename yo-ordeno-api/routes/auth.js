@@ -95,6 +95,7 @@ router.post("/login", (req, res, next) => {
                 });
               user = authUtils.cleanUser(user._doc);
               user.restaurant = rest._id;
+              console.log(user);
               res.status(200).json({ user, token });
             }
           );
@@ -175,8 +176,7 @@ router.patch("/confirm/:token", (req, res, next) => {
         };
         Restaurant.create(restaurant)
           .then(rest => {
-            user = authUtils.cleanUser(user._doc);
-            user.restaurant_id = rest._id;
+            user.restaurant = rest._id;
             res.status(200).json({ user });
           })
           .catch(error => {

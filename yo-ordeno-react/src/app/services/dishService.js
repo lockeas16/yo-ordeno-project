@@ -14,3 +14,17 @@ export const newDish = dish => {
       throw error.response.data;
     });
 };
+
+export const getDishes = restaurant => {
+  return axios
+    .get(`${getBaseUrl()}/dish/${restaurant}`, {
+      headers: {
+        Authorization: localStorage.getItem("TOKEN"),
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.data)
+    .catch(error => {
+      throw error.response.data;
+    });
+};

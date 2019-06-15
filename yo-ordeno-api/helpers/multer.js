@@ -10,7 +10,7 @@ cloudinary.config({
 
 const storage = cloudinaryStorage({
   cloudinary,
-  folder: "lab-profile",
+  folder: "yo-ordeno",
   allowedFormats: ["jpg", "png", "jpeg"],
   filename(req, file, cb) {
     cb(null, file.originalname); // The file on cloudinary would have the same name as the original file name

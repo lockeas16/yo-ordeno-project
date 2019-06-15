@@ -4,8 +4,6 @@ const Dish = require("../models/Dish");
 const authUtils = require("../helpers/auth");
 const uploader = require("../helpers/multer");
 
-router.get("/", (req, res, next) => {});
-
 router.post(
   "/",
   authUtils.verifyToken,
@@ -33,5 +31,17 @@ router.post(
       });
   }
 );
+
+router.get("/:restaurant", authUtils.verifyToken, (req, res, next) => {
+  const { restaurant } = req.params;
+  Dish.find({ restaurant })
+    .then(dishes => {
+      return res.status(200).json(dishes);
+    })
+    .catch(error => {
+      error.action = `Error al listar los platillos`;
+      next(error);
+    });
+});
 
 module.exports = router;

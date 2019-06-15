@@ -22,7 +22,7 @@ class ProfileContainer extends Component {
     const field = e.target.name;
     const { profile } = this.state;
     profile[field] = e.target.value;
-    this.setState(profile);
+    this.setState({ profile });
   };
 
   handleSubmit = e => {
@@ -42,7 +42,9 @@ class ProfileContainer extends Component {
 
     edit(formData)
       .then(data => {
-        const { user } = data;
+        let { user } = this.props;
+        user.image = data.user.image;
+        localStorage.setItem("USER", JSON.stringify(user));
         this.props.setUser(user);
       })
       .catch(error => {

@@ -5,13 +5,13 @@ import { login } from "../../services/authService";
 import UIkit from "uikit";
 import FormInput from "../../common/FormInput";
 
-const handleSubmit = (e, auth, setUser, history) => {
+const handleSubmit = (e, auth, setUser, history, setAuth) => {
   e.preventDefault();
   if (auth.email === "" || !isValidEmail(auth.email))
     return notification("Proporciona un correo electrónico válido");
   if (auth.password === "")
     return notification("Proporciona un password válido");
-  onLogin(auth, setUser, history);
+  onLogin(auth, setUser, history, setAuth);
 };
 
 const handleChange = (e, auth, cb) => {
@@ -22,14 +22,15 @@ const handleChange = (e, auth, cb) => {
   cb(newAuthState);
 };
 
-const onLogin = (auth, setUser, history) => {
+const onLogin = (auth, setUser, history, setAuth) => {
   login(auth)
     .then(({ user, token }) => {
       localStorage.setItem("USER", JSON.stringify(user));
       localStorage.setItem("TOKEN", token);
       setUser(user);
       UIkit.modal("#modal-login").hide();
-      history.push("/profile");
+      setAuth({ email: "", password: "" });
+      history.push("/dashboard/dishes");
     })
     .catch(({ error }) => {
       console.log(error);
@@ -53,7 +54,7 @@ const Login = ({ setUser, history }) => {
         <form
           className="uk-form-stacked uk-width-1-1"
           onSubmit={e => {
-            handleSubmit(e, auth, setUser, history);
+            handleSubmit(e, auth, setUser, history, setAuth);
           }}
         >
           <fieldset className="uk-fieldset">

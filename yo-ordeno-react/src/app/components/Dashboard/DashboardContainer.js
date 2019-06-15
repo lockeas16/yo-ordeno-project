@@ -4,7 +4,7 @@ import SideBar from "./SideBar";
 import Dishes from "./Dishes";
 import DishForm from "./DishForm";
 import { notification } from "../../utils/utils";
-import { newDish } from "../../services/dishService";
+import { newDish, getDishes } from "../../services/dishService";
 
 class DashboardContainer extends Component {
   constructor(props) {
@@ -20,6 +20,14 @@ class DashboardContainer extends Component {
       },
       dishes: []
     };
+    getDishes(this.props.user.restaurant)
+      .then(data => {
+        let dishes = data;
+        this.setState({ dishes });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   setImage = e => {
@@ -67,6 +75,7 @@ class DashboardContainer extends Component {
         formData.append(field, element);
       }
     }
+
     newDish(formData)
       .then(data => {
         const dish = {
@@ -87,19 +96,14 @@ class DashboardContainer extends Component {
   };
 
   render() {
-    const { dish } = this.state;
+    const { dish, dishes } = this.state;
     return (
       <div className="uk-flex uk-flex-row">
         <SideBar />
         <Route
           exact
-          path={`${this.props.match.path}/`}
-          render={props => <Dishes {...props} />}
-        />
-        <Route
-          exact
           path={`${this.props.match.path}/dishes`}
-          render={props => <Dishes {...props} />}
+          render={props => <Dishes {...props} dishes={dishes} />}
         />
         <Route
           exact

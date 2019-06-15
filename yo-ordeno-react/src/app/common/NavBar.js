@@ -76,7 +76,7 @@ const NavBar = ({ _id, email, name,image, lastname, handleLogout, setUser, histo
                       }}>Mi perfil</Link>
                     </li>
                     <li>
-                      <Link to="/dashboard" onClick={()=>{
+                      <Link to="/dashboard/dishes" onClick={()=>{
                         UIkit.dropdown("#drop-menu").hide();
                       }}>Dashboard</Link>
                     </li>

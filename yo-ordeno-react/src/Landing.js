@@ -5,40 +5,38 @@ class Landing extends Component {
   render() {
     return (
       <div uk-height-viewport="offset-top: true; expand: true">
-        <section className="uk-section uk-section-xlarge bg-image1 uk-overflow-hidden">
+        <section className="uk-section uk-section-xlarge  uk-overflow-hidden hero">
           <div className="uk-container">
-            <div className="uk-panel uk-light">
+            <div className="uk-panel uk-light ">
               <h2
                 className="uk-heading-medium"
-                uk-parallax="opacity: 0,1; y: -100,0; scale: 2,1; viewport: 0.2;"
+                // uk-parallax="opacity: 0,1; y: -100,0; scale: 2,1; viewport: 0.8;"
               >
                 Toma el control de lo que ordena tu cliente
               </h2>
               <ul
-                uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.3;"
+                uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.6;"
                 className="uk-list uk-text-bold uk-text-warning uk-text-right"
               >
-                <li>¿Cansado de que se olviden de tu orden?</li>
                 <li>
-                  ¿Cuántas veces te ha llegado algo a tu plato que no es lo que
-                  pediste?
+                  Que los meseros dejen de preocuparse por recordar cada orden
                 </li>
                 <li>
-                  ¿Todo mundo ha terminado de comer mientras tú sigues esperando
-                  a que llegue tu orden?
+                  Ayuda a tus clientes a preocuparse por comer y no por esperar
+                  a que hora llegará su orden
                 </li>
               </ul>
             </div>
           </div>
         </section>
 
-        {/* <section className="uk-section uk-section-large uk-overflow-hidden">
+        <section className="uk-section uk-section-large uk-overflow-hidden bg-image2">
           <div className="uk-container">
             <h2 className="uk-heading-medium">
               Mejora la experiencia de tus clientes
             </h2>
           </div>
-        </section> */}
+        </section>
       </div>
     );
   }

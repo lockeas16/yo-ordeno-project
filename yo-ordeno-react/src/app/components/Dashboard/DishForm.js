@@ -13,21 +13,24 @@ const categories = [
 ];
 
 // prettier-ignore
-const DishForm = ({ handleSubmit, handleChange, setImage, name, description, category, image, price }) => {
+const DishForm = ({ handleSubmit, handleChange, setImage, dish, props }) => {
+  const {name, description, category, image, price, _id} = dish;
   return (
     <section
       className="uk-section uk-section-medium uk-width-expand"
       uk-height-viewport="offset-top: true; expand: true"
     >
       <div className="uk-container uk-container-small">
-        <h1>Nuevo Platillo</h1>
+        {_id ? (<h1>Editar Platillo</h1>):(<h1>Nuevo Platillo</h1>)}
         <ImageUpload
           image={image}
           defaultImage={defaultImage}
           setImage={setImage}
           classSize="imageProfile"
         />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e)=>{
+          handleSubmit(e,_id)
+          }}>
           <fieldset className="uk-fieldset">
             <div className="uk-grid-small uk-child-width-expand" uk-grid="true">
               <div>
@@ -61,7 +64,7 @@ const DishForm = ({ handleSubmit, handleChange, setImage, name, description, cat
 
             <div className="uk-margin uk-flex uk-flex-center">
               <button className="uk-button uk-button-primary uk-width-1-2">
-                Dar de alta platillo
+                {_id ? "Editar platillo" : "Dar de alta platillo"}
               </button>
             </div>
           </fieldset>

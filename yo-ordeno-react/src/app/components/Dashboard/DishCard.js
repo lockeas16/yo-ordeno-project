@@ -1,9 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import defaultImage from "../../assets/defaultMeal.png";
+import { FaTrash } from "react-icons/fa";
+import DeleteDish from "./DeleteDish";
 
-const DishCard = ({ image, name, category, price, description }) => (
+const DishCard = ({
+  image,
+  name,
+  category,
+  price,
+  description,
+  _id,
+  handleDelete
+}) => (
   <div>
-    <div className="uk-card uk-card-default uk-card-small">
+    <div className="uk-card uk-card-default uk-card-small uk-box-shadow-large">
+      <div className="uk-card-badge" uk-toggle="target: #delete-dish">
+        <FaTrash />
+      </div>
       <div className="uk-card-media-top uk-text-center">
         <img
           src={image || defaultImage}
@@ -13,15 +27,33 @@ const DishCard = ({ image, name, category, price, description }) => (
       </div>
       <div className="uk-card-body">
         <h3 className="uk-card-title">{name}</h3>
-        <p>{description}</p>
+        <p className="uk-text-truncate">{description}</p>
         <span className="uk-label-success">{category}</span>
-      </div>
-      <div className="uk-card-footer">
-        <p>
+        <p className="uk-margin-remove">
           Precio: <span className="uk-badge">{price}</span>
         </p>
       </div>
+      <div className="uk-card-footer">
+        <Link
+          to={{
+            pathname: `/dashboard/dish/${_id}`,
+            state: {
+              dish: {
+                image,
+                name,
+                category,
+                description,
+                price,
+                _id
+              }
+            }
+          }}
+        >
+          Editar
+        </Link>
+      </div>
     </div>
+    <DeleteDish handleDelete={handleDelete} id={_id} />
   </div>
 );
 

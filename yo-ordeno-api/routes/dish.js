@@ -44,4 +44,49 @@ router.get("/:restaurant", authUtils.verifyToken, (req, res, next) => {
     });
 });
 
+router.patch(
+  "/:id",
+  authUtils.verifyToken,
+  uploader.single("image"),
+  (req, res, next) => {
+    const { id } = req.params;
+    // If a file is present
+    let updatedDish = {
+      ...req.body
+    };
+
+    delete updatedDish._id;
+
+    if (req.file) {
+      updatedDish.image = req.file.secure_url;
+    }
+
+    Dish.findByIdAndUpdate(id, { $set: { ...updatedDish } }, { new: true })
+      .then(dish => {
+        return res.status(200).json({
+          message: "Platillo actualizado de manera exitosa"
+        });
+      })
+      .catch(error => {
+        error.action = `Error al actualizar un platillo para usuario con id ${id}`;
+        next(error);
+      });
+  }
+);
+
+router.delete("/:id", authUtils.verifyToken, (req, res, next) => {
+  const { id } = req.params;
+
+  Dish.findByIdAndDelete(id)
+    .then(() => {
+      return res.status(200).json({
+        message: "Platillo eliminado de manera exitosa"
+      });
+    })
+    .catch(error => {
+      error.action = `Error al eliminar un platillo con id ${id}`;
+      next(error);
+    });
+});
+
 module.exports = router;

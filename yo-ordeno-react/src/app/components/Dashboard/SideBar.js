@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FaAppleAlt, FaPencilAlt, FaTable } from "react-icons/fa";
+import { FaAppleAlt, FaPlus, FaTable } from "react-icons/fa";
 import UIkit from "uikit";
 
 const SideBar = () => (
@@ -46,7 +46,7 @@ const SideBar = () => (
                 }}
               >
                 <span className="uk-margin-small-right uk-icon">
-                  <FaPencilAlt />
+                  <FaPlus />
                 </span>
                 Alta platillo
               </NavLink>

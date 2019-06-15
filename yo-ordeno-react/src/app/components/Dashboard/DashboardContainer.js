@@ -4,7 +4,8 @@ import SideBar from "./SideBar";
 import Dishes from "./Dishes";
 import DishForm from "./DishForm";
 import { notification } from "../../utils/utils";
-import { newDish, getDishes } from "../../services/dishService";
+// prettier-ignore
+import { newDish, editDish, deleteDish, getDishes } from "../../services/dishService";
 
 class DashboardContainer extends Component {
   constructor(props) {
@@ -30,6 +31,10 @@ class DashboardContainer extends Component {
       });
   }
 
+  setDish = dish => {
+    this.setState({ dish });
+  };
+
   setImage = e => {
     const image = e.target.files[0];
     if (!image) return;
@@ -53,7 +58,7 @@ class DashboardContainer extends Component {
     this.setState({ dish });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e, _id) => {
     e.preventDefault();
     const { dish } = this.state;
     const { restaurant } = this.state.user;
@@ -76,6 +81,20 @@ class DashboardContainer extends Component {
       }
     }
 
+    dish._id ? this.edit(formData, dish._id) : this.create(formData);
+  };
+
+  handleDelete = id => {
+    deleteDish(id)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  create = formData => {
     newDish(formData)
       .then(data => {
         const dish = {
@@ -95,6 +114,33 @@ class DashboardContainer extends Component {
       });
   };
 
+  edit = (formData, _id) => {
+    editDish(formData, _id)
+      .then(data => {
+        const dish = {
+          name: "",
+          description: "",
+          price: 0,
+          category: "",
+          image: ""
+        };
+        const formData = new FormData();
+        this.setState({ dish });
+        this.setState({ formData });
+        notification(data.message, "success");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  componentDidUpdate() {
+    const { dish } = this.state;
+    if (this.props.location.state)
+      if (dish.name === "" || dish.name !== this.props.location.state.dish.name)
+        this.setDish(this.props.location.state.dish);
+  }
+
   render() {
     const { dish, dishes } = this.state;
     return (
@@ -103,15 +149,34 @@ class DashboardContainer extends Component {
         <Route
           exact
           path={`${this.props.match.path}/dishes`}
-          render={props => <Dishes {...props} dishes={dishes} />}
+          render={props => (
+            <Dishes
+              {...props}
+              dishes={dishes}
+              handleDelete={this.handleDelete}
+            />
+          )}
         />
         <Route
           exact
           path={`${this.props.match.path}/newdish`}
           render={props => (
             <DishForm
-              {...props}
-              {...dish}
+              props={props}
+              dish={dish}
+              setImage={this.setImage}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={`${this.props.match.path}/dish/:id`}
+          render={props => (
+            <DishForm
+              props={props}
+              dish={dish}
               setImage={this.setImage}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}

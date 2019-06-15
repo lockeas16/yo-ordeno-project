@@ -1,7 +1,7 @@
 import React from "react";
 import DishCard from "./DishCard";
 
-const Dishes = ({ dishes }) => (
+const Dishes = ({ dishes, handleDelete }) => (
   <section
     className="uk-section uk-section-large uk-width-expand"
     uk-height-viewport="offset-top: true; expand: true"
@@ -13,7 +13,9 @@ const Dishes = ({ dishes }) => (
         uk-grid="true"
       >
         {dishes &&
-          dishes.map((dish, index) => <DishCard key={index} {...dish} />)}
+          dishes.map((dish, index) => (
+            <DishCard key={index} {...dish} handleDelete={handleDelete} />
+          ))}
       </div>
     </div>
   </section>

@@ -1,7 +1,7 @@
 import React from "react";
 
 // prettier-ignore
-const FormInput = ({ handleChange, name, id, type, placeholder, value, label, required, step }) => (
+const FormInput = ({ handleChange, name, id, type, placeholder, value, label, required, step, min }) => (
   <div className="uk-margin inp-div">
     <input
       onChange={handleChange}
@@ -13,6 +13,7 @@ const FormInput = ({ handleChange, name, id, type, placeholder, value, label, re
       value={value}
       required={required}
       step={step ? step : "false"}
+      min={min ? min : "false"}
     />
     <label className="inp-label" htmlFor={name}>
       {label}

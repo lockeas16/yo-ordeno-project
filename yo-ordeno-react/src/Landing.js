@@ -8,10 +8,7 @@ class Landing extends Component {
         <section className="uk-section uk-section-xlarge  uk-overflow-hidden hero">
           <div className="uk-container">
             <div className="uk-panel uk-light ">
-              <h2
-                className="uk-heading-medium"
-                // uk-parallax="opacity: 0,1; y: -100,0; scale: 2,1; viewport: 0.8;"
-              >
+              <h2 className="uk-heading-medium">
                 Toma el control de lo que ordena tu cliente
               </h2>
               <ul

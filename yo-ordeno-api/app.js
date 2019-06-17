@@ -69,5 +69,7 @@ const auth = require("./routes/auth");
 app.use("/api/auth", auth);
 const dish = require("./routes/dish");
 app.use("/api/dish", dish);
+const table = require("./routes/table");
+app.use("/api/table", table);
 
 module.exports = app;

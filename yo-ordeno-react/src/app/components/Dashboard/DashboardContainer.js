@@ -3,9 +3,11 @@ import { Route } from "react-router-dom";
 import SideBar from "./SideBar";
 import Dishes from "./Dishes";
 import DishForm from "./DishForm";
+import Tables from "./Tables";
 import { notification } from "../../utils/utils";
 // prettier-ignore
 import { newDish, editDish, deleteDish, getDishes } from "../../services/dishService";
+import { getTables } from "../../services/tablesService";
 
 class DashboardContainer extends Component {
   constructor(props) {
@@ -19,7 +21,8 @@ class DashboardContainer extends Component {
         category: "",
         image: ""
       },
-      dishes: []
+      dishes: [],
+      tables: []
     };
     getDishes(this.props.user.restaurant)
       .then(data => {
@@ -29,10 +32,25 @@ class DashboardContainer extends Component {
       .catch(error => {
         console.log(error);
       });
+
+    getTables(this.props.user.restaurant)
+      .then(data => {
+        let tables = data;
+        this.setState({ tables });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   setDish = dish => {
     this.setState({ dish });
+  };
+
+  addTable = table => {
+    let { tables } = this.state;
+    tables.push(table);
+    this.setState({ tables });
   };
 
   setImage = e => {
@@ -150,9 +168,9 @@ class DashboardContainer extends Component {
   }
 
   render() {
-    const { dish, dishes } = this.state;
+    const { user, dish, dishes, tables } = this.state;
     return (
-      <div className="uk-flex uk-flex-row">
+      <React.Fragment>
         <SideBar />
         <Route
           exact
@@ -162,6 +180,18 @@ class DashboardContainer extends Component {
               {...props}
               dishes={dishes}
               handleDelete={this.handleDelete}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={`${this.props.match.path}/tables`}
+          render={props => (
+            <Tables
+              {...props}
+              user={user}
+              tables={tables}
+              addTable={this.addTable}
             />
           )}
         />
@@ -191,7 +221,7 @@ class DashboardContainer extends Component {
             />
           )}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }

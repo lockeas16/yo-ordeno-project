@@ -39,7 +39,7 @@ const DishForm = ({ handleSubmit, handleChange, setImage, dish, props }) => {
               </div>
               <div>
                 {/* prettier-ignore */}
-                <FormInput handleChange={handleChange} type="number" name="price" id="priceDish" placeholder={"false"} value={price} label="Precio" step={"any"} required={true}/>
+                <FormInput handleChange={handleChange} type="number" name="price" id="priceDish" placeholder={"false"} value={price} label="Precio" step={"any"} min={0} required={true}/>
               </div>
               <div>
                 <div className="uk-margin inp-div">

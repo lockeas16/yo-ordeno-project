@@ -51,7 +51,7 @@ router.patch(
   uploader.single("image"),
   (req, res, next) => {
     const { id } = req.params;
-    // If a file is present
+
     let updatedDish = {
       ...req.body
     };

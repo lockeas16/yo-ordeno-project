@@ -7,12 +7,7 @@ const TableSchema = new Schema(
       ref: "Restaurant",
       required: true
     },
-    number: {
-      type: Number,
-      required: true,
-      unique: true
-    },
-    seatingCapacity: {
+    seatCapacity: {
       type: Number,
       required: true
     }

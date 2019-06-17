@@ -95,7 +95,6 @@ router.post("/login", (req, res, next) => {
                 });
               user = authUtils.cleanUser(user._doc);
               user.restaurant = rest._id;
-              console.log(user);
               res.status(200).json({ user, token });
             }
           );

@@ -2,7 +2,7 @@ import React from "react";
 import TableRow from "./TableRow";
 
 const TableData = ({ tables }) => (
-  <table className="uk-table">
+  <table className="uk-table uk-table-striped">
     <caption>Mesas registradas</caption>
     <thead>
       <tr>
@@ -13,7 +13,7 @@ const TableData = ({ tables }) => (
     </thead>
     <tbody>
       {tables.map((table, index) => (
-        <TableRow key={index} {...table} id={index} />
+        <TableRow key={index} {...table} tableNumber={index} />
       ))}
     </tbody>
   </table>

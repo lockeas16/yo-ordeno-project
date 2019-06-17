@@ -25,5 +25,6 @@ export const notification = (message, status = "danger") => {
 };
 
 export const isValidEmail = email => {
+  // eslint-disable-next-line no-useless-escape
   return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
 };

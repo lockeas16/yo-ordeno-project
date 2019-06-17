@@ -1,10 +1,17 @@
 import React from "react";
+import QRCodeModal from "./QRCodeModal";
 
-const TableRow = ({ seatCapacity, id }) => (
+const QRCodeTableURL = _id => {
+  return `${window.location.origin}/order/${_id}/`;
+};
+
+const TableRow = ({ seatCapacity, _id, tableNumber }) => (
   <tr>
-    <td># {id}</td>
+    <td># {tableNumber}</td>
     <td>{seatCapacity}</td>
-    <td>Codigo QR</td>
+    <td>
+      <QRCodeModal url={QRCodeTableURL(_id)} />{" "}
+    </td>
   </tr>
 );
 

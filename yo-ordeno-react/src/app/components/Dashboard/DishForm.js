@@ -60,7 +60,7 @@ const DishForm = ({ handleSubmit, handleChange, setImage, dish, props }) => {
             </div>
 
             {/* prettier-ignore */}
-            <FormInput handleChange={handleChange} type="text" name="description" id="descriptionDish" placeholder={"false"} value={description} label="Descripcion"/>
+            <FormInput handleChange={handleChange} type="text" name="description" id="descriptionDish" placeholder={"Descripción"} value={description} label="Descripción"/>
 
             <div className="uk-margin uk-flex uk-flex-center">
               <button className="uk-button uk-button-primary uk-width-1-2">

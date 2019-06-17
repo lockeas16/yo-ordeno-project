@@ -7,7 +7,7 @@ import Tables from "./Tables";
 import { notification } from "../../utils/utils";
 // prettier-ignore
 import { newDish, editDish, deleteDish, getDishes } from "../../services/dishService";
-import { getTables } from "../../services/tablesService";
+import { getTables, deleteTable } from "../../services/tablesService";
 
 class DashboardContainer extends Component {
   constructor(props) {
@@ -51,6 +51,19 @@ class DashboardContainer extends Component {
     let { tables } = this.state;
     tables.push(table);
     this.setState({ tables });
+  };
+
+  delTable = (e, _id, tableNumber) => {
+    deleteTable(_id)
+      .then(data => {
+        let { tables } = this.state;
+        tables.splice(tableNumber, 1);
+        this.setState({ tables });
+        notification(data.message, "success");
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   setImage = e => {
@@ -192,6 +205,7 @@ class DashboardContainer extends Component {
               user={user}
               tables={tables}
               addTable={this.addTable}
+              delTable={this.delTable}
             />
           )}
         />

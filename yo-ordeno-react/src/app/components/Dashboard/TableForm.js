@@ -33,7 +33,6 @@ const onEdit = table => {
 
 const TableForm = ({ user, addTable }) => {
   const [seatCapacity, setseatCapacity] = useState("");
-  const [tableId, setTableId] = useState(0);
   return (
     <form
       onSubmit={e => {

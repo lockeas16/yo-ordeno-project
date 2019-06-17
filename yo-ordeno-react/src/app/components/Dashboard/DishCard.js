@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import defaultImage from "../../assets/defaultMeal.png";
 import { FaTrash } from "react-icons/fa";
-import DeleteDish from "./DeleteDish";
+import DeleteModal from "./DeleteModal";
 
 // prettier-ignore
 const DishCard = ({ image, name, category, price, description, _id, idNode, handleDelete }) => 
@@ -49,7 +49,7 @@ const DishCard = ({ image, name, category, price, description, _id, idNode, hand
         </Link>
       </div>
     </div>
-    <DeleteDish handleDelete={handleDelete} _id={_id} idNode={idNode} />
+    <DeleteModal handleDelete={handleDelete} _id={_id} idNode={idNode} name="dish" legend="¿Seguro de que quieres eliminar este platillo?" />
   </div>
 );
 

@@ -11,6 +11,7 @@ const QRCodeModal = ({ url }) => (
   //     />
   <QRCode
     value={url}
+    bgColor={"rgba(0,0,0,0)"}
     size={128}
     level={"L"}
     includeMargin={true}

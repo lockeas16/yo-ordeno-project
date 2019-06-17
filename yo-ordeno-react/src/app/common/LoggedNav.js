@@ -11,6 +11,11 @@ const LoggedNav = ({ email, image, name, lastname, handleLogout }) => (
     >
       {email}
     </button>
+    <span
+      className="uk-margin-small-left"
+      uk-icon="icon:menu; ratio: 2"
+      uk-toggle="target: #offcanvas-slide"
+    />
     <div uk-dropdown="mode: click; pos: bottom-right" id="drop-menu">
       <ul className="uk-nav uk-dropdown-nav uk-nav-default uk-nav-center">
         <li>

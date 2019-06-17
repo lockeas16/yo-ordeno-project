@@ -9,15 +9,7 @@ const SideBar = () => (
     uk-height-viewport="offset-top: true; expand: true"
   >
     <div>
-      <div>
-        <span
-          className="uk-icon-button"
-          uk-icon="icon:menu; ratio: 3"
-          uk-toggle="target: #offcanvas-slide"
-        />
-      </div>
-
-      <div id="offcanvas-slide" uk-offcanvas="mode: push; overlay: true">
+      <div id="offcanvas-slide" uk-offcanvas="overlay: true">
         <div className="uk-offcanvas-bar uk-flex uk-flex-column">
           <span
             uk-icon="icon: arrow-left; ratio: 2"

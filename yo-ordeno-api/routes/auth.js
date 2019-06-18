@@ -9,9 +9,10 @@ const uploader = require("../helpers/multer");
 const crypto = require("crypto");
 const mailer = require("../helpers/mailer");
 
-// React pone una variable de entorno para saber el entorno y en base al entorno hacer peticiones al back
 const isProduction = process.env.NODE_ENV === "production";
-const base_url = isProduction ? "url_de_heroku" : "http://localhost:3001";
+const base_url = isProduction
+  ? "https://yo-ordeno.herokuapp.com/"
+  : "http://localhost:3001";
 
 router.post("/signup", (req, res, next) => {
   // generamos hash para password

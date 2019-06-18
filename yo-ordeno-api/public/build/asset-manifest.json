@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.940d23bb.chunk.css",
+    "main.js": "/static/js/main.0d90069a.chunk.js",
+    "main.js.map": "/static/js/main.0d90069a.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.dec3b17d.chunk.css": "/static/css/2.dec3b17d.chunk.css",
+    "static/js/2.02634edd.chunk.js": "/static/js/2.02634edd.chunk.js",
+    "static/js/2.02634edd.chunk.js.map": "/static/js/2.02634edd.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ce6bb0dfe005a7944cd00e6fcfa879c6.js": "/precache-manifest.ce6bb0dfe005a7944cd00e6fcfa879c6.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.dec3b17d.chunk.css.map": "/static/css/2.dec3b17d.chunk.css.map",
+    "static/css/main.940d23bb.chunk.css.map": "/static/css/main.940d23bb.chunk.css.map",
+    "static/media/CheckMark.png": "/static/media/CheckMark.2d1e3fcb.png",
+    "static/media/index.css": "/static/media/mobile-order.6b146776.jpg",
+    "static/media/default-profile-480x480.png": "/static/media/default-profile-480x480.ef4b28a3.png",
+    "static/media/defaultMeal.png": "/static/media/defaultMeal.3527ecdb.png",
+    "static/media/exclamation.png": "/static/media/exclamation.ca238cf5.png",
+    "static/media/logo_transparent-crop.png": "/static/media/logo_transparent-crop.f9e40214.png"
+  }
+}

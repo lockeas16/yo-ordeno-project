@@ -62,7 +62,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.locals.title = "Express - Generated with IronGenerator";
 
 const index = require("./routes/index");
-app.use("/", index);
+app.use("/api", index);
 const auth = require("./routes/auth");
 app.use("/api/auth", auth);
 const dish = require("./routes/dish");
@@ -71,5 +71,9 @@ const table = require("./routes/table");
 app.use("/api/table", table);
 const restaurant = require("./routes/restaurant");
 app.use("/api/restaurant", restaurant);
+
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, public, "index.html"));
+});
 
 module.exports = app;

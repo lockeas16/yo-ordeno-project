@@ -1,17 +1,14 @@
 import axios from "axios";
+import { getBaseUrl } from "./properties";
 
 // Creamos el header con el token
 // axios.defaults.headers = {
 //   Authorization: localStorage.getItem("TOKEN")
 // };
 
-// React pone una variable de entorno para saber el entorno y en base al entorno hacer peticiones al back
-const isProduction = process.env.NODE_ENV === "production";
-const base_url = isProduction ? "url_de_heroku" : "http://localhost:3000/api";
-
 export const signup = auth => {
   return axios
-    .post(`${base_url}/auth/signup`, auth)
+    .post(`${getBaseUrl()}/auth/signup`, auth)
     .then(res => res.data)
     .catch(error => {
       throw error.response.data;
@@ -20,7 +17,7 @@ export const signup = auth => {
 
 export const login = auth => {
   return axios
-    .post(`${base_url}/auth/login`, auth)
+    .post(`${getBaseUrl()}/auth/login`, auth)
     .then(res => res.data)
     .catch(error => {
       throw error.response.data;
@@ -29,7 +26,7 @@ export const login = auth => {
 
 export const confirmation = token => {
   return axios
-    .patch(`${base_url}/auth/confirm/${token}`)
+    .patch(`${getBaseUrl()}/auth/confirm/${token}`)
     .then(res => res.data)
     .catch(error => {
       throw error.response.data;
@@ -38,7 +35,7 @@ export const confirmation = token => {
 
 export const edit = user => {
   return axios
-    .patch(`${base_url}/auth/edit`, user, {
+    .patch(`${getBaseUrl()}/auth/edit`, user, {
       headers: {
         Authorization: localStorage.getItem("TOKEN"),
         "Content-Type": "multipart/form-data"
@@ -52,9 +49,9 @@ export const edit = user => {
 
 export const loggedin = () => {
   return axios
-    .get(`${base_url}/auth/loggedin`, {
+    .get(`${getBaseUrl()}/auth/loggedin`, {
       headers: {
-        Authorization: localStorage.getItem("TOKEN"),
+        Authorization: localStorage.getItem("TOKEN")
       }
     })
     .then(res => res.data)

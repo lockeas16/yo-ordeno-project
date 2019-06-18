@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "DEBUG=yo-ordeno-api:* nodemon -e js,hbs ./bin/www",
-    "dev-windows": "nodemon ./bin/www"
+    "dev-windows": "nodemon ./bin/www",
+    "deploy": "cd .. && git subtree push --prefix yo-ordeno-api heroku master"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",

@@ -7,6 +7,7 @@ import NavBarOrder from "./app/common/NavBarOrder";
 import Footer from "./app/common/Footer";
 import SideBar from "./app/common/SideBar";
 import { loggedin } from "./app/services/authService";
+import { notification } from "./app/utils/utils";
 
 class App extends Component {
   constructor(props) {
@@ -16,13 +17,14 @@ class App extends Component {
     this.state = {
       user
     };
-    if (user) {
-      loggedin()
-        .then(data => {})
-        .catch(error => {
-          this.handleLogout();
-        });
-    }
+    // if (user) {
+    //   loggedin()
+    //     .then(data => {})
+    //     .catch(error => {
+    //       notification("Tu sesión ha expirado, inicia sesión de nuevo");
+    //       this.handleLogout();
+    //     });
+    // }
   }
 
   setUser = authUser => {
@@ -44,7 +46,7 @@ class App extends Component {
   render() {
     const { user } = this.state;
     // prettier-ignore
-    const isOrderView = this.props.location.pathname.includes("/table/") ? true : false;
+    const isOrderView = this.props.location.pathname.includes("/restaurant/") ? true : false;
     return (
       <div className="App">
         {isOrderView ? (

@@ -19,6 +19,22 @@ router.post("/", authUtils.verifyToken, (req, res, next) => {
     });
 });
 
+router.get(":/id", (req, res, next) => {
+  const { id } = req.params;
+  Table.findById(id).then(table => {
+    return res
+      .status(200)
+      .json({
+        table,
+        message: "Mesa encontrada"
+      })
+      .catch(error => {
+        error.action = `Error al buscar mesa con id ${_id}`;
+        next(error);
+      });
+  });
+});
+
 router.patch(":/id", authUtils.verifyToken, (req, res, next) => {
   const { id } = req.params;
   let updatedTable = {

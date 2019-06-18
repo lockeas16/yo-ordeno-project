@@ -4,7 +4,7 @@ class Landing extends Component {
   render() {
     return (
       <div uk-height-viewport="offset-top: true; expand: true">
-        <section className="uk-section uk-section-xlarge  uk-overflow-hidden hero">
+        <section className="uk-section uk-section-xlarge uk-overflow-hidden hero">
           <div className="uk-container">
             <div className="uk-panel uk-light ">
               <h2 className="uk-heading-medium">

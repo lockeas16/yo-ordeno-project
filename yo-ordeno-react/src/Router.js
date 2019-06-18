@@ -39,7 +39,10 @@ const Router = ({ user, setUser }) => (
         <DashboardContainer {...props} user={user} setUser={setUser} />
       )}
     />
-    <Route path="/table/:id" render={props => <OrderContainer {...props} />} />
+    <Route
+      path="/restaurant/:restaurant/table/:id"
+      render={props => <OrderContainer {...props} />}
+    />
   </Switch>
 );
 

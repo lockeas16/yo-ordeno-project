@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 class Landing extends Component {
-  state = {};
   render() {
     return (
       <div uk-height-viewport="offset-top: true; expand: true">

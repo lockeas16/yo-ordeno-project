@@ -38,18 +38,6 @@ router.patch(":/id", authUtils.verifyToken, (req, res, next) => {
     });
 });
 
-router.get("/:restaurant", authUtils.verifyToken, (req, res, next) => {
-  const { restaurant } = req.params;
-  Table.find({ restaurant })
-    .then(tables => {
-      return res.status(200).json(tables);
-    })
-    .catch(error => {
-      error.action = `Error al listar las mesas`;
-      next(error);
-    });
-});
-
 router.delete("/:id", authUtils.verifyToken, (req, res, next) => {
   const { id } = req.params;
 

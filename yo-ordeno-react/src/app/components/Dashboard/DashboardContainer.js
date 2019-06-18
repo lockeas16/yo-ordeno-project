@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import SideBar from "./SideBar";
 import Dishes from "./Dishes";
 import DishForm from "./DishForm";
 import Tables from "./Tables";
@@ -184,7 +183,6 @@ class DashboardContainer extends Component {
     const { user, dish, dishes, tables } = this.state;
     return (
       <React.Fragment>
-        <SideBar />
         <Route
           exact
           path={`${this.props.match.path}/dishes`}

@@ -71,5 +71,7 @@ const dish = require("./routes/dish");
 app.use("/api/dish", dish);
 const table = require("./routes/table");
 app.use("/api/table", table);
+const restaurant = require("./routes/restaurant");
+app.use("/api/restaurant", restaurant);
 
 module.exports = app;

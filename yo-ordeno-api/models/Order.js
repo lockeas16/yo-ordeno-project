@@ -14,8 +14,7 @@ const OrderSchema = new Schema(
           required: true
         },
         consumer: {
-          type: Schema.Types.ObjectId,
-          ref: "User",
+          type: String,
           required: true
         },
         notes: {
@@ -24,8 +23,8 @@ const OrderSchema = new Schema(
         status: {
           type: String,
           required: true,
-          default: "Ordered",
-          enum: ["Ordered", "Cooking", "Done", "Delivered", "Canceled"]
+          default: "Enviada",
+          enum: ["Enviada", "Preparándose", "Lista", "Entregada", "Cancelada"]
         }
       }
     ]

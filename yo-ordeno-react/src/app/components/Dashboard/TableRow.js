@@ -4,7 +4,7 @@ import { FaTrash } from "react-icons/fa";
 import DeleteModal from "./DeleteModal";
 
 const QRCodeTableURL = _id => {
-  return `${window.location.origin}/order/${_id}/`;
+  return `${window.location.origin}/table/${_id}/`;
 };
 
 const TableRow = ({ seatCapacity, _id, tableNumber, delTable }) => (

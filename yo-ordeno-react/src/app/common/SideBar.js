@@ -7,7 +7,7 @@ const SideBar = () => (
   <div id="offcanvas-slide" uk-offcanvas="overlay: true; flip: true">
     <div className="uk-offcanvas-bar uk-flex uk-flex-column">
       <span
-        uk-icon="icon: arrow-left; ratio: 2"
+        uk-icon="icon: arrow-right; ratio: 2"
         className="uk-offcanvas-close uk-link-heading"
       />
       <ul className="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">

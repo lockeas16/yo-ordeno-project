@@ -3,7 +3,10 @@ import { withRouter } from "react-router-dom";
 import "./App.css";
 import Router from "./Router";
 import NavBar from "./app/common/NavBar";
+import NavBarOrder from "./app/common/NavBarOrder";
 import Footer from "./app/common/Footer";
+import SideBar from "./app/common/SideBar";
+import { loggedin } from "./app/services/authService";
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +16,13 @@ class App extends Component {
     this.state = {
       user
     };
+    if (user) {
+      loggedin()
+        .then(data => {})
+        .catch(error => {
+          this.handleLogout();
+        });
+    }
   }
 
   setUser = authUser => {
@@ -33,14 +43,28 @@ class App extends Component {
 
   render() {
     const { user } = this.state;
+    // prettier-ignore
+    const isOrderView = this.props.location.pathname.includes("/table/") ? true : false;
     return (
       <div className="App">
-        <NavBar
-          {...user}
-          handleLogout={this.handleLogout}
+        {isOrderView ? (
+          <NavBarOrder />
+        ) : (
+          <React.Fragment>
+            <SideBar />
+            <NavBar
+              {...user}
+              handleLogout={this.handleLogout}
+              setUser={this.setUser}
+            />
+          </React.Fragment>
+        )}
+
+        <Router
+          user={user}
           setUser={this.setUser}
+          handleLogout={this.handleLogout}
         />
-        <Router user={user} setUser={this.setUser} />
         <Footer />
       </div>
     );

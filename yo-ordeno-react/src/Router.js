@@ -5,10 +5,15 @@ import AuthFormContainer from "./app/components/Auth/AuthFormContainer";
 import ConfirmationContainer from "./app/components/Auth/ConfirmationContainer";
 import ProfileContainer from "./app/components/Profile/ProfileContainer";
 import DashboardContainer from "./app/components/Dashboard/DashboardContainer";
+import OrderContainer from "./app/components/Order/OrderContainer";
 
 const Router = ({ user, setUser }) => (
   <Switch>
-    <Route exact path="/" render={props => <Landing {...props} />} />
+    <Route
+      exact
+      path="/"
+      render={props => <Landing {...props} setUser={setUser} />}
+    />
     <Route
       exact
       path="/signup"
@@ -34,6 +39,7 @@ const Router = ({ user, setUser }) => (
         <DashboardContainer {...props} user={user} setUser={setUser} />
       )}
     />
+    <Route path="/table/:id" render={props => <OrderContainer {...props} />} />
   </Switch>
 );
 

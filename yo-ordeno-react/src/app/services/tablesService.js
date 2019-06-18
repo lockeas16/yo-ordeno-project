@@ -3,7 +3,21 @@ import { getBaseUrl } from "./properties";
 
 export const getTables = restaurant => {
   return axios
-    .get(`${getBaseUrl()}/table/${restaurant}`, {
+    .get(`${getBaseUrl()}/restaurant/${restaurant}/tables`, {
+      headers: {
+        Authorization: localStorage.getItem("TOKEN"),
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.data)
+    .catch(error => {
+      throw error.response.data;
+    });
+};
+
+export const getTable = id => {
+  return axios
+    .get(`${getBaseUrl()}/table/${id}`, {
       headers: {
         Authorization: localStorage.getItem("TOKEN"),
         "Content-Type": "application/json"

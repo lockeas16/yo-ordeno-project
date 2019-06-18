@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link } from "react-router-dom";
 import UIkit from "uikit";
@@ -11,7 +12,7 @@ const LoggedNav = ({ email, image, name, lastname, handleLogout }) => (
     >
       {email}
     </button>
-    
+
     <div uk-dropdown="mode: click; pos: bottom-right" id="drop-menu">
       <ul className="uk-nav uk-dropdown-nav uk-nav-default uk-nav-center">
         <li>

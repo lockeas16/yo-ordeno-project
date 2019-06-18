@@ -1,11 +1,11 @@
 import React from "react";
 
 // prettier-ignore
-const FormInput = ({ handleChange, name, id, type, placeholder, value, label, required, step, min }) => (
+const FormInput = ({ handleChange, name, id, type, placeholder, value, label, required, step, min, classStyle }) => (
   <div className="uk-margin inp-div">
     <input
       onChange={handleChange}
-      className="uk-width-1-1 inp-form"
+      className={`uk-width-1-1 inp-form ${classStyle}`}
       type={type}
       placeholder={placeholder === "false" ? undefined : placeholder}
       name={name}

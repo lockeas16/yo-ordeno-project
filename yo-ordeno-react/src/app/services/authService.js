@@ -49,3 +49,16 @@ export const edit = user => {
       throw error.response.data;
     });
 };
+
+export const loggedin = () => {
+  return axios
+    .get(`${base_url}/auth/loggedin`, {
+      headers: {
+        Authorization: localStorage.getItem("TOKEN"),
+      }
+    })
+    .then(res => res.data)
+    .catch(error => {
+      throw error.response.data;
+    });
+};

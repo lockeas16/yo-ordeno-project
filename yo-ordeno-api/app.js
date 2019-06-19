@@ -50,7 +50,7 @@ app.use(
 
 app.use(
   cors({
-    origin: ["http://localhost:3001", "https://yo-ordeno.herokuapp.com/"]
+    origin: ["http://localhost:3001", "https://yo-ordeno.herokuapp.com"]
   })
 );
 
@@ -70,7 +70,7 @@ const restaurant = require("./routes/restaurant");
 app.use("/api/restaurant", restaurant);
 
 app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, public, "index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 module.exports = app;

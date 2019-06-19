@@ -65,6 +65,7 @@ router.patch(
     Dish.findByIdAndUpdate(id, { $set: { ...updatedDish } }, { new: true })
       .then(dish => {
         return res.status(200).json({
+          dish,
           message: "Platillo actualizado de manera exitosa"
         });
       })

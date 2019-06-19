@@ -155,6 +155,12 @@ class DashboardContainer extends Component {
   edit = (formData, _id) => {
     editDish(formData, _id)
       .then(data => {
+        console.log(data);
+        let { dishes } = this.state;
+        const dishtoUpdate = dishes.findIndex(dish => dish._id === _id);
+        dishes[dishtoUpdate] = data.dish;
+        console.log(dishes);
+
         const dish = {
           name: "",
           description: "",
@@ -164,6 +170,7 @@ class DashboardContainer extends Component {
         };
         const formData = new FormData();
         this.setState({ dish });
+        this.setState({ dishes });
         this.setState({ formData });
         notification(data.message, "success");
       })

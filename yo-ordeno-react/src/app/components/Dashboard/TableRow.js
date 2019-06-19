@@ -3,16 +3,16 @@ import QRCodeModal from "./QRCodeModal";
 import { FaTrash } from "react-icons/fa";
 import DeleteModal from "./DeleteModal";
 
-const QRCodeTableURL = _id => {
-  return `${window.location.origin}/table/${_id}/`;
+const QRCodeTableURL = (_id, restaurant) => {
+  return `${window.location.origin}/restaurant/${restaurant}/table/${_id}/`;
 };
 
-const TableRow = ({ seatCapacity, _id, tableNumber, delTable }) => (
+const TableRow = ({ seatCapacity, _id, tableNumber, delTable, user }) => (
   <tr>
     <td className="uk-width-small"># {tableNumber + 1}</td>
     <td className="uk-width-small">{seatCapacity}</td>
     <td>
-      <QRCodeModal url={QRCodeTableURL(_id)} />{" "}
+      <QRCodeModal url={QRCodeTableURL(_id, user.restaurant)} />{" "}
     </td>
     <td className="uk-table-shrink">
       <div

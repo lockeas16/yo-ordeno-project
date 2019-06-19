@@ -46,13 +46,6 @@ class OrderContainer extends Component {
       .catch(error => {
         console.log(error);
       });
-
-    // .then(data => {
-    //   console.log(data);
-    // })
-    // .catch(error => {
-    //   console.log(error);
-    // });
   }
 
   handleChange = e => {

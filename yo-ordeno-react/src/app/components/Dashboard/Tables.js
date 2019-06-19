@@ -11,7 +11,7 @@ const Tables = ({ user, tables, addTable, delTable }) => {
       <div className="uk-container uk-container-small">
         <h2>Mesas</h2>
         <TableForm user={user} addTable={addTable} />
-        <TableData tables={tables} delTable={delTable} />
+        <TableData user={user} tables={tables} delTable={delTable} />
       </div>
     </section>
   );

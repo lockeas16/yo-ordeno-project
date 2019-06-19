@@ -6,8 +6,6 @@ import NavBar from "./app/common/NavBar";
 import NavBarOrder from "./app/common/NavBarOrder";
 import Footer from "./app/common/Footer";
 import SideBar from "./app/common/SideBar";
-import { loggedin } from "./app/services/authService";
-import { notification } from "./app/utils/utils";
 
 class App extends Component {
   constructor(props) {
@@ -17,14 +15,6 @@ class App extends Component {
     this.state = {
       user
     };
-    // if (user) {
-    //   loggedin()
-    //     .then(data => {})
-    //     .catch(error => {
-    //       notification("Tu sesión ha expirado, inicia sesión de nuevo");
-    //       this.handleLogout();
-    //     });
-    // }
   }
 
   setUser = authUser => {

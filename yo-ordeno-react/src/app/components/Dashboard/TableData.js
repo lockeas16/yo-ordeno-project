@@ -1,7 +1,7 @@
 import React from "react";
 import TableRow from "./TableRow";
 
-const TableData = ({ tables, delTable }) => (
+const TableData = ({ tables, delTable, user }) => (
   <table className="uk-table uk-table-striped uk-table-middle uk-text-center">
     <caption>Mesas registradas</caption>
     <thead>
@@ -16,6 +16,7 @@ const TableData = ({ tables, delTable }) => (
       {tables.map((table, index) => (
         <TableRow
           key={index}
+          user={user}
           {...table}
           tableNumber={index}
           delTable={delTable}

@@ -1,7 +1,7 @@
 import React from "react";
 import FormInput from "../../common/FormInput";
 
-const Step1 = ({ handleChange, name, ...props }) => {
+const Step1 = ({ handleChange, consumer, ...props }) => {
   return (
     <div>
       <h1>Bienvenido!!!</h1>
@@ -9,16 +9,16 @@ const Step1 = ({ handleChange, name, ...props }) => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          if (name) props.nextStep();
+          if (consumer) props.nextStep();
         }}
       >
         <FormInput
           handleChange={handleChange}
           type="text"
-          name="name"
-          id="name"
+          name="consumer"
+          id="consumer"
           placeholder="Mi nombre es..."
-          value={name}
+          value={consumer}
           label="Nombre"
           classStyle="uk-text-large"
           required={true}

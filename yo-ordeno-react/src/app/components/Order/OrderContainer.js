@@ -7,6 +7,7 @@ import { notification } from "../../utils/utils";
 import StepWizard from "react-step-wizard";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
+import Step3 from "./Step3";
 
 class OrderContainer extends Component {
   constructor(props) {
@@ -17,8 +18,10 @@ class OrderContainer extends Component {
       order: {
         table,
         restaurant,
-        name: ""
+        consumer: "",
+        dishes: []
       },
+      dishesMenu: [],
       status: "WAITING"
     };
 
@@ -40,8 +43,8 @@ class OrderContainer extends Component {
 
     getInitialState(table, restaurant)
       .then(response => {
-        const dishes = response.data;
-        this.setState({ dishes });
+        const dishesMenu = response.data;
+        this.setState({ dishesMenu });
       })
       .catch(error => {
         console.log(error);
@@ -55,10 +58,25 @@ class OrderContainer extends Component {
     this.setState({ order });
   };
 
+  addDishToOrder = (e, dish) => {
+    e.preventDefault();
+    let { order } = this.state;
+    order.dishes.push(dish);
+    this.setState({ order });
+  };
+
+  handleStep2 = e => {
+    e.preventDefault();
+    let { order } = this.state;
+    if (order.dishes.length === 0)
+      return notification("Debes seleccionar al menos un platillo");
+    return true;
+  };
+
   render() {
-    const { order, dishes } = this.state;
-    let name = "";
-    if (order) name = order.name;
+    const { order, dishesMenu } = this.state;
+    let consumer = "";
+    if (order) consumer = order.consumer;
 
     return (
       <section
@@ -80,9 +98,15 @@ class OrderContainer extends Component {
             <Step1
               props={this.props}
               handleChange={this.handleChange}
-              name={name}
+              consumer={consumer}
             />
-            <Step2 props={this.props} dishes={dishes} />
+            <Step2
+              props={this.props}
+              dishesMenu={dishesMenu}
+              addDishToOrder={this.addDishToOrder}
+              handleStep2={this.handleStep2}
+            />
+            <Step3 props={this.props} order={order} />
           </StepWizard>
         </div>
       </section>

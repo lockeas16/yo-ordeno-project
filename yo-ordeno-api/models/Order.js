@@ -6,15 +6,15 @@ const OrderSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Table"
     },
+    consumer: {
+      type: String,
+      required: true
+    },
     dishes: [
       {
         dish: {
           type: Schema.Types.ObjectId,
           ref: "Dish",
-          required: true
-        },
-        consumer: {
-          type: String,
           required: true
         },
         notes: {

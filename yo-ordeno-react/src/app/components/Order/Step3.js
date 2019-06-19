@@ -1,0 +1,29 @@
+import React from "react";
+import OrderDetail from "./OrderDetail";
+
+const Step3 = ({ order, ...props }) => {
+  const { dishes, consumer } = order;
+  return (
+    <div>
+      <h1>Revisa y confirma tu pedido</h1>
+      <h2>Pedido a nombre de: {consumer}</h2>
+      {dishes &&
+        dishes.map((dish, index) => (
+          <OrderDetail key={`item-${index}`} {...dish} />
+        ))}
+      <div className="uk-button-group uk-margin">
+        <button
+          className="uk-button uk-button-default"
+          onClick={props.previousStep}
+        >
+          Regresar
+        </button>
+        <button className="uk-button uk-button-primary uk-margin-small-left">
+          Confirmar pedido
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Step3;

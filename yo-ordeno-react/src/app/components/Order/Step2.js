@@ -1,20 +1,38 @@
 import React from "react";
 import DishMenu from "./DishMenu";
 
-const Step2 = ({ dishes, ...props }) => {
-  console.log(dishes);
+const Step2 = ({ dishesMenu, addDishToOrder, handleStep2, ...props }) => {
   return (
     <div>
-      <h2>Escoge lo que quieres ordenar</h2>
-
+      <h1>Escoge lo que quieres ordenar</h1>
       <ul uk-accordion="true">
-        {dishes &&
-          dishes.map((dish, index) => <DishMenu key={index} {...dish} />)}
-        {/* <li>
-          <a className="uk-accordion-title" />
-          <div className="uk-accordion-content" />
-        </li> */}
+        {dishesMenu &&
+          dishesMenu.map((dish, index) => (
+            <DishMenu key={index} {...dish} addDishToOrder={addDishToOrder} />
+          ))}
       </ul>
+      {/* <form
+        onSubmit={e => {
+          e.preventDefault();
+        }}
+      > */}
+      <div className="uk-button-group">
+        <button
+          className="uk-button uk-button-default"
+          onClick={props.previousStep}
+        >
+          Regresar
+        </button>
+        <button
+          className="uk-button uk-button-primary uk-margin-small-left"
+          onClick={e => {
+            if (handleStep2(e)) props.nextStep();
+          }}
+        >
+          Revisar pedido antes de confirmar
+        </button>
+      </div>
+      {/* </form> */}
     </div>
   );
 };

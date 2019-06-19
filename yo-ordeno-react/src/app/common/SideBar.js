@@ -27,7 +27,20 @@ const SideBar = () => (
         <li className="uk-nav-divider" />
         <li className="uk-parent">
           <NavLink
-            to="/dashboard/newdish"
+            // to="/dashboard/newdish"
+
+            to={{
+              pathname: "/dashboard/newdish",
+              state: {
+                dish: {
+                  image: "",
+                  name: "",
+                  category: "",
+                  description: "",
+                  price: 0
+                }
+              }
+            }}
             onClick={() => {
               UIkit.offcanvas("#offcanvas-slide").hide();
             }}

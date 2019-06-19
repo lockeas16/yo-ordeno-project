@@ -155,11 +155,9 @@ class DashboardContainer extends Component {
   edit = (formData, _id) => {
     editDish(formData, _id)
       .then(data => {
-        console.log(data);
         let { dishes } = this.state;
         const dishtoUpdate = dishes.findIndex(dish => dish._id === _id);
         dishes[dishtoUpdate] = data.dish;
-        console.log(dishes);
 
         const dish = {
           name: "",
@@ -179,10 +177,24 @@ class DashboardContainer extends Component {
       });
   };
 
+  sameDishObjects = (dish1, dish2) => {
+    if (
+      dish1.name === dish2.name &&
+      dish1.description === dish2.description &&
+      dish1.category === dish2.category &&
+      dish1.price === dish2.price &&
+      dish1.image === dish2.image
+    )
+      return true;
+    return false;
+  };
+
   componentDidUpdate() {
-    const { dish } = this.state;
+    let { dish } = this.state;
+    // if the objects are different, update dish on state. This is necessary
+    // to allow switching between editing a dish and create a new dish
     if (this.props.location.state)
-      if (dish.name === "" || dish.name !== this.props.location.state.dish.name)
+      if (!this.sameDishObjects(dish, this.props.location.state.dish))
         this.setDish(this.props.location.state.dish);
   }
 

@@ -27,7 +27,7 @@ class OrderContainer extends Component {
 
     async function getInitialState(table, restaurant) {
       let result = await getTableOnRestaurant(table, restaurant);
-      // await result.catch(error => {
+      // await result.ñcatch(error => {
       //   // const { error } = res.response.data;
       //   throw error.response.data;
       //   // return notification(error.action);
@@ -58,10 +58,40 @@ class OrderContainer extends Component {
     this.setState({ order });
   };
 
+  getQuantityOrdered = _id => {
+    const { order } = this.state;
+    const index = order.dishes.findIndex(dish => dish._id === _id);
+    if (index < 0) return "0";
+    else return order.dishes[index].quantity;
+  };
+
   addDishToOrder = (e, dish) => {
     e.preventDefault();
     let { order } = this.state;
-    order.dishes.push(dish);
+    const index = order.dishes.findIndex(item => item._id === dish._id);
+    // dish not found, its added
+    if (index < 0) {
+      dish.quantity = 1;
+      order.dishes.push(dish);
+    }
+    // otherwise, increment quantity
+    else order.dishes[index].quantity++;
+    this.setState({ order });
+  };
+
+  removeDishToOrder = (e, dish) => {
+    e.preventDefault();
+    let { order } = this.state;
+    const index = order.dishes.findIndex(item => item._id === dish._id);
+    // dish not found, return 0
+    if (index < 0) {
+      dish.quantity = 0;
+    }
+    // otherwise, decrement quantity and if it reaches zero, remove it from the array
+    else {
+      order.dishes[index].quantity--;
+      if (order.dishes[index].quantity === 0) order.dishes.splice(index, 1);
+    }
     this.setState({ order });
   };
 
@@ -103,7 +133,9 @@ class OrderContainer extends Component {
             <Step2
               props={this.props}
               dishesMenu={dishesMenu}
+              removeDishToOrder={this.removeDishToOrder}
               addDishToOrder={this.addDishToOrder}
+              getQuantityOrdered={this.getQuantityOrdered}
               handleStep2={this.handleStep2}
             />
             <Step3 props={this.props} order={order} />

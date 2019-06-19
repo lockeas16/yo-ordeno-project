@@ -1,14 +1,27 @@
 import React from "react";
 import DishMenu from "./DishMenu";
 
-const Step2 = ({ dishesMenu, addDishToOrder, handleStep2, ...props }) => {
+const Step2 = ({
+  dishesMenu,
+  removeDishToOrder,
+  addDishToOrder,
+  getQuantityOrdered,
+  handleStep2,
+  ...props
+}) => {
   return (
     <div>
       <h1>Escoge lo que quieres ordenar</h1>
       <ul uk-accordion="true">
         {dishesMenu &&
           dishesMenu.map((dish, index) => (
-            <DishMenu key={index} {...dish} addDishToOrder={addDishToOrder} />
+            <DishMenu
+              key={index}
+              {...dish}
+              removeDishToOrder={removeDishToOrder}
+              addDishToOrder={addDishToOrder}
+              getQuantityOrdered={getQuantityOrdered}
+            />
           ))}
       </ul>
       {/* <form

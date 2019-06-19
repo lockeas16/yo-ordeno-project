@@ -1,12 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import RemoveAddDishBtn from "./RemoveAddDishBtn";
 
-const DishMenu = ({ _id, name, description, image, price, addDishToOrder }) => {
+// prettier-ignore
+const DishMenu = ({_id, name, description, image, price, quantity, removeDishToOrder, addDishToOrder, getQuantityOrdered }) => {
   const styleImg = {
     backgroundSize: `cover`,
     backgroundPosition: `50% 50%`,
     backgroundRepeat: `no-repeat`,
     backgroundImage: `url('${image}')`
+  };
+
+  const dish = {
+    _id,
+    name,
+    image,
+    price,
+    quantity
   };
 
   return (
@@ -24,7 +34,8 @@ const DishMenu = ({ _id, name, description, image, price, addDishToOrder }) => {
         </div>
       </a>
       <div className="uk-accordion-content">
-        <div className="uk-flex">
+        <RemoveAddDishBtn dish={dish} removeDishToOrder={removeDishToOrder} addDishToOrder={addDishToOrder} getQuantityOrdered={getQuantityOrdered} />
+        {/* <div className="uk-flex">
           <button href="" className="leftSkew outline btnOrder">
             <span>-</span>
           </button>
@@ -32,7 +43,7 @@ const DishMenu = ({ _id, name, description, image, price, addDishToOrder }) => {
           <button href="" className="rightSkew outline btnOrder">
             <span>+</span>
           </button>
-        </div>
+        </div> */}
         {/* <p>
           <button
             className="uk-button uk-button-default"

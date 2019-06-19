@@ -69,8 +69,8 @@ app.use("/api/table", table);
 const restaurant = require("./routes/restaurant");
 app.use("/api/restaurant", restaurant);
 
-app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+// app.use("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "public", "index.html"));
+// });
 
 module.exports = app;

@@ -98,7 +98,6 @@ class OrderContainer extends Component {
         };
       })
     };
-    console.log(cleanOrder);
     sendOrder(restaurant, cleanOrder)
       .then(response => {
         notification(response.data.message, "success");

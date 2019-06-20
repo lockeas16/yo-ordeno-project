@@ -46,6 +46,16 @@ server.on("error", error => {
   }
 });
 
+// Server that emits kitchen data
+const io = require("socket.io")(server);
+
+io.on("connection", socket => {
+  console.log("New client connected");
+  socket.on("connected", (restaurant, table) => {
+    console.log(`User online in restaurant ${restaurant} at table ${table}`);
+  });
+});
+
 server.listen(process.env.PORT, () => {
   console.log(`Listening on http://localhost:${process.env.PORT}`);
 });

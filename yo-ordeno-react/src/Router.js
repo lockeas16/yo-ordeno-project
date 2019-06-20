@@ -43,6 +43,10 @@ const Router = ({ user, setUser }) => (
       path="/restaurant/:restaurant/table/:id"
       render={props => <OrderContainer {...props} />}
     />
+    {/* <Route
+      path="/kitchen/:restaurant/table/:id"
+      render={props => <KitchenContainer {...props} />}
+    /> */}
   </Switch>
 );
 

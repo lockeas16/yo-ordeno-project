@@ -12,7 +12,7 @@ const OrderSchema = new Schema(
     },
     dishes: [
       {
-        dish: {
+        dish_id: {
           type: Schema.Types.ObjectId,
           ref: "Dish",
           required: true

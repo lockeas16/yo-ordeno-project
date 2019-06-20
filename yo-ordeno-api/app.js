@@ -68,6 +68,8 @@ const table = require("./routes/table");
 app.use("/api/table", table);
 const restaurant = require("./routes/restaurant");
 app.use("/api/restaurant", restaurant);
+const kitchen = require("./routes/kitchen");
+app.use("/api/kitchen", kitchen);
 
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));

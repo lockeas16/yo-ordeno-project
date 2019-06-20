@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Table = require("../models/Table");
 const Dish = require("../models/Dish");
+const Order = require("../models/Order");
 const authUtils = require("../helpers/auth");
 
 router.get("/:restaurant/tables", authUtils.verifyToken, (req, res, next) => {
@@ -40,13 +41,27 @@ router.get("/:restaurant/table/:id", (req, res, next) => {
 
 router.get("/:restaurant/dishes/", (req, res, next) => {
   const { restaurant } = req.params;
-  console.log(restaurant);
   Dish.find({ restaurant })
     .then(dishes => {
       return res.status(200).json(dishes);
     })
     .catch(error => {
       error.action = `Error al listar los platillos`;
+      next(error);
+    });
+});
+
+router.post("/:restaurant/order/", (req, res, next) => {
+  const { restaurant } = req.params;
+
+  Order.create(req.body)
+    .then(order => {
+      return res
+        .status(200)
+        .json({ message: "Orden enviada con éxito", order });
+    })
+    .catch(error => {
+      error.action = `Error al enviar tu orden`;
       next(error);
     });
 });

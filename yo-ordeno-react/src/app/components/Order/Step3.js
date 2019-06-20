@@ -1,7 +1,7 @@
 import React from "react";
 import OrderDetail from "./OrderDetail";
 
-const Step3 = ({ order, ...props }) => {
+const Step3 = ({ order, confirmOrder, ...props }) => {
   const { dishes, consumer } = order;
   return (
     <div>
@@ -18,7 +18,10 @@ const Step3 = ({ order, ...props }) => {
         >
           Regresar
         </button>
-        <button className="uk-button uk-button-primary uk-margin-small-left">
+        <button
+          className="uk-button uk-button-primary uk-margin-small-left"
+          onClick={confirmOrder}
+        >
           Confirmar pedido
         </button>
       </div>

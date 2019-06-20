@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {
   getTableOnRestaurant,
-  getRestaurantDishes
+  getRestaurantDishes,
+  sendOrder
 } from "../../services/orderService";
 import { notification } from "../../utils/utils";
 import StepWizard from "react-step-wizard";
@@ -15,9 +16,9 @@ class OrderContainer extends Component {
     const table = props.match.params.id;
     const restaurant = props.match.params.restaurant;
     this.state = {
+      restaurant,
       order: {
         table,
-        restaurant,
         consumer: "",
         dishes: []
       },
@@ -27,17 +28,7 @@ class OrderContainer extends Component {
 
     async function getInitialState(table, restaurant) {
       let result = await getTableOnRestaurant(table, restaurant);
-      // await result.ñcatch(error => {
-      //   // const { error } = res.response.data;
-      //   throw error.response.data;
-      //   // return notification(error.action);
-      // });
       let dataDishes = await getRestaurantDishes(restaurant);
-      // dataDishes.catch(error => {
-      //   // const { error } = res.response.data;
-      //   throw error.response.data;
-      //   // return notification(error.action);
-      // });
       return dataDishes;
     }
 
@@ -95,6 +86,28 @@ class OrderContainer extends Component {
     this.setState({ order });
   };
 
+  confirmOrder = e => {
+    e.preventDefault();
+    let { order, restaurant } = this.state;
+    const cleanOrder = {
+      ...order,
+      dishes: order.dishes.map(item => {
+        return {
+          dish_id: item._id,
+          quantity: item.quantity
+        };
+      })
+    };
+    console.log(cleanOrder);
+    sendOrder(restaurant, cleanOrder)
+      .then(response => {
+        notification(response.data.message, "success");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   handleStep2 = e => {
     e.preventDefault();
     let { order } = this.state;
@@ -138,7 +151,11 @@ class OrderContainer extends Component {
               getQuantityOrdered={this.getQuantityOrdered}
               handleStep2={this.handleStep2}
             />
-            <Step3 props={this.props} order={order} />
+            <Step3
+              props={this.props}
+              order={order}
+              confirmOrder={this.confirmOrder}
+            />
           </StepWizard>
         </div>
       </section>

@@ -16,3 +16,11 @@ export const getRestaurantDishes = restaurant => {
     }
   });
 };
+
+export const sendOrder = (restaurant, order) => {
+  return axios.post(`${getBaseUrl()}/restaurant/${restaurant}/order/`, order, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+};

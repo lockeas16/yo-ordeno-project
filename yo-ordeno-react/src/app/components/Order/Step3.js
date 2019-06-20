@@ -6,7 +6,7 @@ const Step3 = ({ order, ...props }) => {
   return (
     <div>
       <h1>Revisa y confirma tu pedido</h1>
-      <h2>Pedido a nombre de: {consumer}</h2>
+      <h2>A nombre de: {consumer}</h2>
       {dishes &&
         dishes.map((dish, index) => (
           <OrderDetail key={`item-${index}`} {...dish} />

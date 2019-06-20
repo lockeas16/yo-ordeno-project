@@ -17,6 +17,10 @@ const OrderSchema = new Schema(
           ref: "Dish",
           required: true
         },
+        quantity: {
+          type: Number,
+          required: true
+        },
         notes: {
           type: String
         },

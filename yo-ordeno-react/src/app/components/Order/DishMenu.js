@@ -35,31 +35,6 @@ const DishMenu = ({_id, name, description, image, price, quantity, removeDishToO
       </a>
       <div className="uk-accordion-content">
         <RemoveAddDishBtn dish={dish} removeDishToOrder={removeDishToOrder} addDishToOrder={addDishToOrder} getQuantityOrdered={getQuantityOrdered} />
-        {/* <div className="uk-flex">
-          <button href="" className="leftSkew outline btnOrder">
-            <span>-</span>
-          </button>
-          <span className="middleBtn">0</span>
-          <button href="" className="rightSkew outline btnOrder">
-            <span>+</span>
-          </button>
-        </div> */}
-        {/* <p>
-          <button
-            className="uk-button uk-button-default"
-            onClick={e => {
-              const dish = {
-                _id,
-                name,
-                image,
-                price
-              };
-              addDishToOrder(e, dish);
-            }}
-          >
-            Agregar
-          </button>
-        </p> */}
       </div>
     </li>
   );

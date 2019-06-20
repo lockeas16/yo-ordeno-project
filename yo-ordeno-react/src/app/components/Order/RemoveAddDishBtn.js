@@ -7,7 +7,7 @@ const RemoveAddDishBtn = ({
   getQuantityOrdered
 }) => {
   return (
-    <div className="uk-flex">
+    <div className="uk-flex uk-flex-center">
       <button
         href=""
         className="leftSkew outline btnOrder"

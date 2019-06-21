@@ -93,7 +93,7 @@ class OrderContainer extends Component {
       ...order,
       dishes: order.dishes.map(item => {
         return {
-          dish_id: item._id,
+          dish: item._id,
           quantity: item.quantity
         };
       })

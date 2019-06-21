@@ -36,7 +36,7 @@ class App extends Component {
   render() {
     const { user } = this.state;
     // prettier-ignore
-    const isOrderView = this.props.location.pathname.includes("/restaurant/") ? true : false;
+    const isOrderView = this.props.location.pathname.includes("/restaurant/") || this.props.location.pathname.includes("/kitchen/") ? true : false;
     return (
       <div className="App">
         {isOrderView ? (

@@ -12,7 +12,7 @@ const OrderSchema = new Schema(
     },
     dishes: [
       {
-        dish_id: {
+        dish: {
           type: Schema.Types.ObjectId,
           ref: "Dish",
           required: true
@@ -28,7 +28,14 @@ const OrderSchema = new Schema(
           type: String,
           required: true,
           default: "Enviada",
-          enum: ["Enviada", "Preparándose", "Lista", "Entregada", "Cancelada"]
+          enum: [
+            "Enviada",
+            "Preparándose",
+            "Lista",
+            "Entregada",
+            "Finalizada",
+            "Cancelada"
+          ]
         }
       }
     ]

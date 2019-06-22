@@ -4,6 +4,7 @@ import {
   getRestaurantDishes,
   sendOrder
 } from "../../services/orderService";
+import { createSocket } from "../../services/kitchenService";
 import { notification } from "../../utils/utils";
 import StepWizard from "react-step-wizard";
 import Step1 from "./Step1";
@@ -26,6 +27,7 @@ class OrderContainer extends Component {
     };
 
     async function getInitialState(table, restaurant) {
+      // eslint-disable-next-line no-unused-vars
       let result = await getTableOnRestaurant(table, restaurant);
       let dataDishes = await getRestaurantDishes(restaurant);
       return dataDishes;
@@ -117,6 +119,10 @@ class OrderContainer extends Component {
       .then(response => {
         const { restaurant, order } = this.state;
         notification(response.data.message, "success");
+        // we send an event to back so it can be emitted
+        const socket = createSocket();
+        socket.emit("new-dish", restaurant, order.table);
+
         setTimeout(() => {
           this.props.history.push(
             `/kitchen/${restaurant}/table/${order.table}`

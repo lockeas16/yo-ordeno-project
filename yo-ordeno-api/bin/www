@@ -49,7 +49,16 @@ server.on("error", error => {
 // Server that emits kitchen data
 const io = require("socket.io")(server);
 const nsp = io.of("/api/kitchen");
-const order = require("../helpers/order");
+const Order = require("../helpers/order");
+
+const getOrders = (restaurant, table) => {
+  return Order.getOrders(restaurant, table)
+    .then(orders => orders)
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
+};
 
 io.on("connection", socket => {
   console.log("New client connected to server");
@@ -58,22 +67,32 @@ io.on("connection", socket => {
 
 nsp.on("connection", socket => {
   console.log("Client connected to nsp: /api/kitchen");
+  // when creating a new dish, emits an event to al sockets joined on that room
+  socket.on("new-dish", (restaurant, table) => {
+    getOrders(restaurant, table)
+      .then(orders => {
+        nsp.to(`${restaurant}-${table}`).emit("orders", orders);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
+  // when it connects to check status, retrieve all orders and emit that data to that particular socket
   socket.on("connected", (restaurant, table) => {
-    order
-      .getOrders(restaurant, table)
+    socket.join(`${restaurant}-${table}`);
+    getOrders(restaurant, table)
       .then(orders => {
         socket.emit("orders", orders);
       })
       .catch(error => {
         console.log(error);
-        socket.emit("orders", {
-          error: { message: "Error al recuperar las ordenes de la mesa" }
-        });
       });
   });
-  socket.on("disconnect", () =>
-    console.log("Client disconnected from nsp: /api/kitchen")
-  );
+  // at disconnection, leave this room
+  socket.on("disconnect", (restaurant, table) => {
+    console.log("Client disconnected from nsp: /api/kitchen");
+    socket.leave(`${restaurant}-${table}`);
+  });
 });
 
 server.listen(process.env.PORT, () => {

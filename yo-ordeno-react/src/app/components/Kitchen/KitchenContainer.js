@@ -17,13 +17,13 @@ class KitchenContainer extends Component {
 
   componentDidMount() {
     let { interval } = this.state;
-    interval = setInterval(() => this.getOrders(), 1000);
+    this.getOrders();
     this.setState({ interval });
   }
 
   componentWillUnmount() {
-    let { interval } = this.state;
-    clearInterval(interval);
+    const { socket, restaurant, table } = this.state;
+    socket.emit("disconnect", restaurant, table);
   }
 
   getOrders = () => {

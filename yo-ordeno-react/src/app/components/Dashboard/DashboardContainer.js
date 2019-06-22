@@ -75,6 +75,7 @@ class DashboardContainer extends Component {
     reader.onloadend = () => {
       let { dish } = this.state;
       dish.image = reader.result;
+      console.log(reader.result);
       this.setState({ dish });
       this.setState({ formData });
     };

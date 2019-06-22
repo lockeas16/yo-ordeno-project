@@ -6,6 +6,7 @@ import ConfirmationContainer from "./app/components/Auth/ConfirmationContainer";
 import ProfileContainer from "./app/components/Profile/ProfileContainer";
 import DashboardContainer from "./app/components/Dashboard/DashboardContainer";
 import OrderContainer from "./app/components/Order/OrderContainer";
+import KitchenContainer from "./app/components/Kitchen/KitchenContainer";
 
 const Router = ({ user, setUser }) => (
   <Switch>
@@ -43,10 +44,10 @@ const Router = ({ user, setUser }) => (
       path="/restaurant/:restaurant/table/:id"
       render={props => <OrderContainer {...props} />}
     />
-    {/* <Route
+    <Route
       path="/kitchen/:restaurant/table/:id"
       render={props => <KitchenContainer {...props} />}
-    /> */}
+    />
   </Switch>
 );
 

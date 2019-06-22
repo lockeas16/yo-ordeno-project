@@ -1,33 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import FormInput from "../../common/FormInput";
 
-const RemoveAddDishBtn = ({
-  dish,
-  removeDishToOrder,
-  addDishToOrder,
-  getQuantityOrdered
-}) => {
+// prettier-ignore
+const RemoveAddDishBtn = ({dish, removeDishFromOrder, addDishToOrder, getQuantityOrdered, editNotesToDish}) => {
+  const [notes, setNotes] = useState("");
   return (
-    <div className="uk-flex uk-flex-center">
-      <button
-        href=""
-        className="leftSkew outline btnOrder"
-        onClick={e => {
-          removeDishToOrder(e, dish);
-        }}
-      >
-        <span>-</span>
-      </button>
-      <span className="middleBtn">{getQuantityOrdered(dish._id)}</span>
-      <button
-        href=""
-        className="rightSkew outline btnOrder"
-        onClick={e => {
-          addDishToOrder(e, dish);
-        }}
-      >
-        <span>+</span>
-      </button>
-    </div>
+    <React.Fragment>
+      <div className="uk-flex uk-flex-center">
+        <button
+          href=""
+          className="leftSkew outline btnOrder"
+          onClick={e => {
+            removeDishFromOrder(e, dish);
+          }}
+        >
+          <span>-</span>
+        </button>
+        <span className="middleBtn">{getQuantityOrdered(dish._id)}</span>
+        <button
+          href=""
+          className="rightSkew outline btnOrder"
+          onClick={e => {
+            addDishToOrder(e, dish, notes);
+          }}
+        >
+          <span>+</span>
+        </button>
+      </div>
+      <div>
+        <FormInput
+          handleChange={e => {
+            setNotes(e.target.value);
+            editNotesToDish(e, dish._id, e.target.value);
+          }}
+          type="text"
+          name="notes"
+          value={notes}
+          id="notesOrder"
+          placeholder={
+            "Instrucciones especiales (sin aderezo, sin cebolla, etc.)"
+          }
+          label="Notas"
+        />
+      </div>
+    </React.Fragment>
   );
 };
 

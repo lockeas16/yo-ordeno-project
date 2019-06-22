@@ -1,14 +1,8 @@
 import React from "react";
 import DishMenu from "./DishMenu";
 
-const Step2 = ({
-  dishesMenu,
-  removeDishToOrder,
-  addDishToOrder,
-  getQuantityOrdered,
-  handleStep2,
-  ...props
-}) => {
+// prettier-ignore
+const Step2 = ({dishesMenu, removeDishFromOrder, addDishToOrder, getQuantityOrdered, handleStep2, editNotesToDish, ...props}) => {
   return (
     <div>
       <h1>Escoge lo que quieres ordenar</h1>
@@ -18,17 +12,13 @@ const Step2 = ({
             <DishMenu
               key={index}
               {...dish}
-              removeDishToOrder={removeDishToOrder}
+              removeDishFromOrder={removeDishFromOrder}
               addDishToOrder={addDishToOrder}
               getQuantityOrdered={getQuantityOrdered}
+              editNotesToDish={editNotesToDish}
             />
           ))}
       </ul>
-      {/* <form
-        onSubmit={e => {
-          e.preventDefault();
-        }}
-      > */}
       <div className="uk-button-group">
         <button
           className="uk-button uk-button-default"
@@ -45,7 +35,6 @@ const Step2 = ({
           Revisar pedido antes de confirmar
         </button>
       </div>
-      {/* </form> */}
     </div>
   );
 };

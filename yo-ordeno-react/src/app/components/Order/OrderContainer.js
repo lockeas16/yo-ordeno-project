@@ -22,8 +22,7 @@ class OrderContainer extends Component {
         consumer: "",
         dishes: []
       },
-      dishesMenu: [],
-      status: "WAITING"
+      dishesMenu: []
     };
 
     async function getInitialState(table, restaurant) {
@@ -56,21 +55,25 @@ class OrderContainer extends Component {
     else return order.dishes[index].quantity;
   };
 
-  addDishToOrder = (e, dish) => {
+  addDishToOrder = (e, dish, notes) => {
     e.preventDefault();
     let { order } = this.state;
     const index = order.dishes.findIndex(item => item._id === dish._id);
     // dish not found, its added
     if (index < 0) {
       dish.quantity = 1;
+      dish.notes = notes;
       order.dishes.push(dish);
     }
-    // otherwise, increment quantity
-    else order.dishes[index].quantity++;
+    // otherwise, increment quantity and update notes
+    else {
+      order.dishes[index].notes = notes;
+      order.dishes[index].quantity++;
+    }
     this.setState({ order });
   };
 
-  removeDishToOrder = (e, dish) => {
+  removeDishFromOrder = (e, dish) => {
     e.preventDefault();
     let { order } = this.state;
     const index = order.dishes.findIndex(item => item._id === dish._id);
@@ -86,6 +89,17 @@ class OrderContainer extends Component {
     this.setState({ order });
   };
 
+  editNotesToDish = (e, dish_id, notes) => {
+    let { order } = this.state;
+    const index = order.dishes.findIndex(item => item._id === dish_id);
+    // nothing to update
+    if (index < 0) return;
+    else {
+      order.dishes[index].notes = notes;
+      this.setState({ order });
+    }
+  };
+
   confirmOrder = e => {
     e.preventDefault();
     let { order, restaurant } = this.state;
@@ -93,14 +107,21 @@ class OrderContainer extends Component {
       ...order,
       dishes: order.dishes.map(item => {
         return {
-          dish_id: item._id,
+          dish: item._id,
+          notes: item.notes,
           quantity: item.quantity
         };
       })
     };
     sendOrder(restaurant, cleanOrder)
       .then(response => {
+        const { restaurant, order } = this.state;
         notification(response.data.message, "success");
+        setTimeout(() => {
+          this.props.history.push(
+            `/kitchen/${restaurant}/table/${order.table}`
+          );
+        }, 1000);
       })
       .catch(error => {
         console.log(error);
@@ -145,10 +166,11 @@ class OrderContainer extends Component {
             <Step2
               props={this.props}
               dishesMenu={dishesMenu}
-              removeDishToOrder={this.removeDishToOrder}
+              removeDishFromOrder={this.removeDishFromOrder}
               addDishToOrder={this.addDishToOrder}
               getQuantityOrdered={this.getQuantityOrdered}
               handleStep2={this.handleStep2}
+              editNotesToDish={this.editNotesToDish}
             />
             <Step3
               props={this.props}

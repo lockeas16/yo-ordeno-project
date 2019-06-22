@@ -48,12 +48,32 @@ server.on("error", error => {
 
 // Server that emits kitchen data
 const io = require("socket.io")(server);
+const nsp = io.of("/api/kitchen");
+const order = require("../helpers/order");
 
 io.on("connection", socket => {
-  console.log("New client connected");
+  console.log("New client connected to server");
+  socket.on("disconnect", () => console.log("Client disconnected from server"));
+});
+
+nsp.on("connection", socket => {
+  console.log("Client connected to nsp: /api/kitchen");
   socket.on("connected", (restaurant, table) => {
-    console.log(`User online in restaurant ${restaurant} at table ${table}`);
+    order
+      .getOrders(restaurant, table)
+      .then(orders => {
+        socket.emit("orders", orders);
+      })
+      .catch(error => {
+        console.log(error);
+        socket.emit("orders", {
+          error: { message: "Error al recuperar las ordenes de la mesa" }
+        });
+      });
   });
+  socket.on("disconnect", () =>
+    console.log("Client disconnected from nsp: /api/kitchen")
+  );
 });
 
 server.listen(process.env.PORT, () => {

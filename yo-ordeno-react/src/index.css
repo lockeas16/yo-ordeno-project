@@ -62,6 +62,7 @@ code {
   width: 100%;
   padding: 15px 10px 0;
   border: none;
+  font-size: 1rem;
 }
 
 .inp-form:focus {
@@ -218,4 +219,14 @@ code {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Media queries */
+@media (max-width: 640px){
+  .margin-right-remove{
+    margin-right: 0px !important;
+  }
+  .margin-left-remove{
+    margin-left: 0px !important;
+  }
 }

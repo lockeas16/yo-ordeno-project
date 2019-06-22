@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Profile from "./Profile";
 import { edit } from "../../services/authService";
+import { notification } from "../../utils/utils";
 
 class ProfileContainer extends Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class ProfileContainer extends Component {
         user.image = data.user.image;
         localStorage.setItem("USER", JSON.stringify(user));
         this.props.setUser(user);
+        notification("Perfil actualizado con éxito", "success");
       })
       .catch(error => {
         console.log(error);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormInput from "../../common/FormInput";
 
 // prettier-ignore
-const RemoveAddDishBtn = ({dish, removeDishFromOrder, addDishToOrder, getQuantityOrdered}) => {
+const RemoveAddDishBtn = ({dish, removeDishFromOrder, addDishToOrder, getQuantityOrdered, editNotesToDish}) => {
   const [notes, setNotes] = useState("");
   return (
     <React.Fragment>
@@ -30,7 +30,8 @@ const RemoveAddDishBtn = ({dish, removeDishFromOrder, addDishToOrder, getQuantit
       <div>
         <FormInput
           handleChange={e => {
-            setNotes(e.target.value)
+            setNotes(e.target.value);
+            editNotesToDish(e, dish._id, e.target.value);
           }}
           type="text"
           name="notes"

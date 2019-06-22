@@ -89,6 +89,17 @@ class OrderContainer extends Component {
     this.setState({ order });
   };
 
+  editNotesToDish = (e, dish_id, notes) => {
+    let { order } = this.state;
+    const index = order.dishes.findIndex(item => item._id === dish_id);
+    // nothing to update
+    if (index < 0) return;
+    else {
+      order.dishes[index].notes = notes;
+      this.setState({ order });
+    }
+  };
+
   confirmOrder = e => {
     e.preventDefault();
     let { order, restaurant } = this.state;
@@ -159,6 +170,7 @@ class OrderContainer extends Component {
               addDishToOrder={this.addDishToOrder}
               getQuantityOrdered={this.getQuantityOrdered}
               handleStep2={this.handleStep2}
+              editNotesToDish={this.editNotesToDish}
             />
             <Step3
               props={this.props}

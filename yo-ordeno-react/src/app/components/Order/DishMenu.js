@@ -3,7 +3,7 @@ import React from "react";
 import RemoveAddDishBtn from "./RemoveAddDishBtn";
 
 // prettier-ignore
-const DishMenu = ({_id, name, description, image, price, quantity, removeDishFromOrder, addDishToOrder, getQuantityOrdered }) => {
+const DishMenu = ({_id, name, description, image, price, quantity, removeDishFromOrder, addDishToOrder, editNotesToDish, getQuantityOrdered }) => {
   const styleImg = {
     backgroundSize: `cover`,
     backgroundPosition: `50% 50%`,
@@ -34,7 +34,7 @@ const DishMenu = ({_id, name, description, image, price, quantity, removeDishFro
         </div>
       </a>
       <div className="uk-accordion-content">
-        <RemoveAddDishBtn dish={dish} removeDishFromOrder={removeDishFromOrder} addDishToOrder={addDishToOrder} getQuantityOrdered={getQuantityOrdered} />
+        <RemoveAddDishBtn dish={dish} removeDishFromOrder={removeDishFromOrder} addDishToOrder={addDishToOrder} getQuantityOrdered={getQuantityOrdered} editNotesToDish={editNotesToDish}/>
       </div>
     </li>
   );

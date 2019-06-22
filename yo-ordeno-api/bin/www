@@ -71,6 +71,9 @@ nsp.on("connection", socket => {
         });
       });
   });
+  socket.on("disconnect", () =>
+    console.log("Client disconnected from nsp: /api/kitchen")
+  );
 });
 
 server.listen(process.env.PORT, () => {

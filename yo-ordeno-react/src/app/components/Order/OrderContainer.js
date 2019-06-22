@@ -104,7 +104,13 @@ class OrderContainer extends Component {
     };
     sendOrder(restaurant, cleanOrder)
       .then(response => {
+        const { restaurant, order } = this.state;
         notification(response.data.message, "success");
+        setTimeout(() => {
+          this.props.history.push(
+            `/kitchen/${restaurant}/table/${order.table}`
+          );
+        }, 1000);
       })
       .catch(error => {
         console.log(error);

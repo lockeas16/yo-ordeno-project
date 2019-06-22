@@ -219,3 +219,13 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+/* Media queries */
+@media (max-width: 640px){
+  .margin-right-remove{
+    margin-right: 0px !important;
+  }
+  .margin-left-remove{
+    margin-left: 0px !important;
+  }
+}

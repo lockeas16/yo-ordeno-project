@@ -3,7 +3,7 @@ import DishMenu from "./DishMenu";
 
 const Step2 = ({
   dishesMenu,
-  removeDishToOrder,
+  removeDishFromOrder,
   addDishToOrder,
   getQuantityOrdered,
   handleStep2,
@@ -18,7 +18,7 @@ const Step2 = ({
             <DishMenu
               key={index}
               {...dish}
-              removeDishToOrder={removeDishToOrder}
+              removeDishFromOrder={removeDishFromOrder}
               addDishToOrder={addDishToOrder}
               getQuantityOrdered={getQuantityOrdered}
             />

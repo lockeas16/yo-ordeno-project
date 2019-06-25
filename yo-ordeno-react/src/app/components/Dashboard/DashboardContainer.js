@@ -70,14 +70,14 @@ class DashboardContainer extends Component {
     if (!image) return;
     const formData = new FormData();
     formData.append("image", image);
+    this.setState({ formData });
+
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
-    reader.onloadend = () => {
+    reader.onload = () => {
       let { dish } = this.state;
       dish.image = reader.result;
-      console.log(reader.result);
       this.setState({ dish });
-      this.setState({ formData });
     };
   };
 
@@ -178,25 +178,30 @@ class DashboardContainer extends Component {
       });
   };
 
-  sameDishObjects = (dish1, dish2) => {
-    if (
-      dish1.name === dish2.name &&
-      dish1.description === dish2.description &&
-      dish1.category === dish2.category &&
-      dish1.price === dish2.price &&
-      dish1.image === dish2.image
-    )
-      return true;
-    return false;
+  searchDish = _id => {
+    const { dishes } = this.state;
+    return dishes.findIndex(dish => dish._id === _id);
   };
 
+  // if an _id is in location.state and its different from the one in state, updates
+  // if there is no location.state, and also _id its differente, we are in new dish form and then we initialize dish object in state
   componentDidUpdate() {
     let { dish } = this.state;
-    // if the objects are different, update dish on state. This is necessary
-    // to allow switching between editing a dish and create a new dish
-    if (this.props.location.state)
-      if (!this.sameDishObjects(dish, this.props.location.state.dish))
-        this.setDish(this.props.location.state.dish);
+    // prettier-ignore
+    if (this.props.location.state && dish._id !== this.props.location.state._id) {
+      const { dishes } = this.state;
+      const index = this.searchDish(this.props.location.state._id);
+      this.setDish(dishes[index]);
+    } else if(!this.props.location.state && dish._id){
+        dish= {
+          image: "",
+          name: "",
+          category: "",
+          description: "",
+          price: 0
+        }
+        this.setDish(dish);
+    }
   }
 
   render() {

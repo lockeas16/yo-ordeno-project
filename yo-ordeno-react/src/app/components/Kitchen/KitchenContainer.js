@@ -45,7 +45,7 @@ class KitchenContainer extends Component {
           <h1>Ordenes en la mesa</h1>
           <ul
             uk-accordion="true"
-            className="uk-margin-xlarge-left uk-margin-xlarge-right margin-left-remove margin-right-remove"
+            className="margin-left-larger margin-right-larger margin-left-remove margin-right-remove uk-text-left"
           >
             {orders &&
               orders.map((order, index) => (

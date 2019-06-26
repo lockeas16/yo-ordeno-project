@@ -27,9 +27,8 @@ const OrderSchema = new Schema(
         status: {
           type: String,
           required: true,
-          default: "Enviada",
+          default: "Preparándose",
           enum: [
-            "Enviada",
             "Preparándose",
             "Lista",
             "Entregada",
@@ -42,4 +41,21 @@ const OrderSchema = new Schema(
   },
   { timestamps: true }
 );
+
+// virtual to get the general order status
+OrderSchema.virtual("status").get(function() {
+  const dishes_status = new Set(this.dishes.map(dish => dish.status));
+  if (
+    dishes_status.has("Preparándose") ||
+    dishes_status.has("Lista") ||
+    dishes_status.has("Entregada")
+  )
+    return "Abierta";
+  return "Cerrada";
+});
+
+// enable the use of virtuals for schema
+OrderSchema.set("toObject", { virtuals: true });
+OrderSchema.set("toJSON", { virtuals: true });
+
 module.exports = mongoose.model("Order", OrderSchema);

@@ -191,6 +191,14 @@ code {
   margin-left: -25px;
 }
 
+.margin-right-larger{
+  margin-right: 120px!important;
+}
+
+.margin-left-larger{
+  margin-left: 120px!important;
+}
+
 /* UIkit override */
 .uk-dropdown {
   background: rgba(0, 0, 0, 0.5);
@@ -215,7 +223,20 @@ code {
   vertical-align: middle;
   background: #32d296;
   color: #fff;
-  font-size: 0.875rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uk-badge-warning {
+  box-sizing: border-box;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 500px;
+  vertical-align: middle;
+  background: #faa05a;
+  color: #fff;
   display: inline-flex;
   justify-content: center;
   align-items: center;

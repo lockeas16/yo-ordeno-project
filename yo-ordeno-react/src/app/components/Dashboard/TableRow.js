@@ -1,5 +1,5 @@
 import React from "react";
-import QRCodeModal from "./QRCodeModal";
+import QRCodeComp from "./QRCode";
 import { FaTrash } from "react-icons/fa";
 import DeleteModal from "./DeleteModal";
 
@@ -12,7 +12,7 @@ const TableRow = ({ seatCapacity, _id, tableNumber, delTable, user }) => (
     <td className="uk-width-small"># {tableNumber + 1}</td>
     <td className="uk-width-small">{seatCapacity}</td>
     <td>
-      <QRCodeModal url={QRCodeTableURL(_id, user.restaurant)} />{" "}
+      <QRCodeComp url={QRCodeTableURL(_id, user.restaurant)} />{" "}
     </td>
     <td className="uk-table-shrink">
       <div

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaAppleAlt, FaPlus, FaTable } from "react-icons/fa";
 import UIkit from "uikit";
 
@@ -12,7 +12,7 @@ const SideBar = () => (
       />
       <ul className="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
         <li>
-          <NavLink
+          <Link
             to="/dashboard/dishes"
             onClick={() => {
               UIkit.offcanvas("#offcanvas-slide").hide();
@@ -22,25 +22,12 @@ const SideBar = () => (
               <FaAppleAlt />
             </span>
             Platillos
-          </NavLink>
+          </Link>
         </li>
         <li className="uk-nav-divider" />
         <li className="uk-parent">
-          <NavLink
-            // to="/dashboard/newdish"
-
-            to={{
-              pathname: "/dashboard/newdish",
-              state: {
-                dish: {
-                  image: "",
-                  name: "",
-                  category: "",
-                  description: "",
-                  price: 0
-                }
-              }
-            }}
+          <Link
+            to="/dashboard/newdish"
             onClick={() => {
               UIkit.offcanvas("#offcanvas-slide").hide();
             }}
@@ -49,11 +36,11 @@ const SideBar = () => (
               <FaPlus />
             </span>
             Alta platillo
-          </NavLink>
+          </Link>
         </li>
         <li className="uk-nav-divider" />
         <li className="uk-parent">
-          <NavLink
+          <Link
             to="/dashboard/tables"
             onClick={() => {
               UIkit.offcanvas("#offcanvas-slide").hide();
@@ -63,7 +50,7 @@ const SideBar = () => (
               <FaTable />
             </span>
             Mesas
-          </NavLink>
+          </Link>
         </li>
       </ul>
     </div>

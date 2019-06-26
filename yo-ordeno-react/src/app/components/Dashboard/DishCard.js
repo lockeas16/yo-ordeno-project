@@ -31,19 +31,11 @@ const DishCard = ({ image, name, category, price, description, _id, idNode, hand
       </div>
       <div className="uk-card-footer">
         <Link
-          to={{
-            pathname: `/dashboard/dish/${_id}`,
-            state: {
-              dish: {
-                image,
-                name,
-                category,
-                description,
-                price,
-                _id
-              }
-            }
-          }}
+        to={{
+          pathname:`/dashboard/dish/${_id}`,
+          // send _id to search for the corresponding dish and update state
+          state:{_id}
+        }}
         >
           Editar
         </Link>

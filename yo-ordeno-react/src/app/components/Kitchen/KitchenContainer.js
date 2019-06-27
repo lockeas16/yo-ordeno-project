@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { createSocket } from "../../services/kitchenService";
+import { createSocket, updateDish } from "../../services/kitchenService";
+import { notification } from "../../utils/utils";
 import ConsumerOrder from "./ConsumerOrder";
+import BillModal from "./BillModal";
 
 class KitchenContainer extends Component {
   constructor(props) {
@@ -30,8 +32,27 @@ class KitchenContainer extends Component {
     const { socket, restaurant, table } = this.state;
     socket.emit("connected", restaurant, table);
     socket.on("orders", data => {
+      // computing the total for each order
+      data.forEach((element, index) => {
+        data[index].total = element.dishes.reduce(
+          (acc, dish) => (acc += dish.dish.price * dish.quantity),
+          0
+        );
+      });
       this.setState({ orders: data });
     });
+  };
+
+  receiveDish = (e, order_id, dish_id) => {
+    const { socket, restaurant, table } = this.state;
+    updateDish(restaurant, order_id, dish_id)
+      .then(order => {
+        socket.emit("updated-dish", restaurant, table);
+        notification(order.message, "success");
+      })
+      .catch(error => {
+        return notification(error.action);
+      });
   };
 
   render() {
@@ -53,10 +74,20 @@ class KitchenContainer extends Component {
                   key={`order-${index}`}
                   {...order}
                   orderItems={order.dishes}
+                  receiveDish={this.receiveDish}
                 />
               ))}
           </ul>
         </div>
+        {orders &&
+          orders.map((order, index) => (
+            <BillModal
+              key={`bill-${index}`}
+              _id={order._id}
+              total={order.total}
+              dishes={order.dishes}
+            />
+          ))}
       </section>
     );
   }

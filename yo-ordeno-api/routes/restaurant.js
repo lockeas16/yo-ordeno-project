@@ -66,4 +66,27 @@ router.post("/:restaurant/order/", (req, res, next) => {
     });
 });
 
+router.patch("/:restaurant/order/:order/dish/:dish", (req, res, next) => {
+  const { restaurant, order, dish } = req.params;
+
+  Order.findOneAndUpdate(
+    { $and: [{ _id: order }, { "dishes._id": dish }] },
+    { $set: { "dishes.$.status": "Entregado" } },
+    { new: true }
+  )
+    .then(order => {
+      return res.status(200).json({
+        message: "Platillo cambio de estatus de manera exitosa",
+        order
+      });
+    })
+    .catch(error => {
+      error.action = "Error al actualizar platillo de orden";
+      next(error);
+    });
+});
+
+// Example to update
+// db.orders.findOneAndUpdate({"dishes._id":ObjectId('5d0e815ae8c3154a3d9ae58a')},{$set:{'dishes.$.status':"Entregado"}})
+
 module.exports = router;

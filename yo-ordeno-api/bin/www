@@ -67,7 +67,7 @@ io.on("connection", socket => {
 
 nsp.on("connection", socket => {
   console.log("Client connected to nsp: /api/kitchen");
-  // when creating a new dish, emits an event to al sockets joined on that room
+  // when creating a new dish, emits an event to all sockets joined on that room
   socket.on("new-dish", (restaurant, table) => {
     getOrders(restaurant, table)
       .then(orders => {
@@ -77,6 +77,18 @@ nsp.on("connection", socket => {
         console.log(error);
       });
   });
+
+  // if a dish changed its status, emit an event to all sockets on that room
+  socket.on("updated-dish", (restaurant, table) => {
+    getOrders(restaurant, table)
+      .then(orders => {
+        nsp.to(`${restaurant}-${table}`).emit("orders", orders);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
+
   // when it connects to check status, retrieve all orders and emit that data to that particular socket
   socket.on("connected", (restaurant, table) => {
     socket.join(`${restaurant}-${table}`);

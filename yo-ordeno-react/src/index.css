@@ -37,8 +37,8 @@ code {
   z-index: -2;
 }
 
-.bgMuted{
-  background: rgba(0,0,0,0.5)
+.bgMuted {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .logo-filter {
@@ -191,12 +191,18 @@ code {
   margin-left: -25px;
 }
 
-.margin-right-larger{
-  margin-right: 120px!important;
+.margin-right-larger {
+  margin-right: 120px !important;
 }
 
-.margin-left-larger{
-  margin-left: 120px!important;
+.margin-left-larger {
+  margin-left: 120px !important;
+}
+
+.button-xsmall {
+  padding: 0 15px;
+  line-height: 20px;
+  font-size: 0.7rem;
 }
 
 /* UIkit override */
@@ -243,11 +249,11 @@ code {
 }
 
 /* Media queries */
-@media (max-width: 640px){
-  .margin-right-remove{
+@media (max-width: 640px) {
+  .margin-right-remove {
     margin-right: 0px !important;
   }
-  .margin-left-remove{
+  .margin-left-remove {
     margin-left: 0px !important;
   }
 }

@@ -27,14 +27,8 @@ const OrderSchema = new Schema(
         status: {
           type: String,
           required: true,
-          default: "Preparándose",
-          enum: [
-            "Preparándose",
-            "Lista",
-            "Entregada",
-            "Finalizada",
-            "Cancelada"
-          ]
+          default: "Ordenado",
+          enum: ["Ordenado", "Entregado", "Cancelado"]
         }
       }
     ]
@@ -45,12 +39,7 @@ const OrderSchema = new Schema(
 // virtual to get the general order status
 OrderSchema.virtual("status").get(function() {
   const dishes_status = new Set(this.dishes.map(dish => dish.status));
-  if (
-    dishes_status.has("Preparándose") ||
-    dishes_status.has("Lista") ||
-    dishes_status.has("Entregada")
-  )
-    return "Abierta";
+  if (dishes_status.has("Ordenado")) return "Abierta";
   return "Cerrada";
 });
 

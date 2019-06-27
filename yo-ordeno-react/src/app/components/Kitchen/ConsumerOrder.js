@@ -2,7 +2,7 @@
 import React from "react";
 import OrderItem from "./OrderItem";
 
-const ConsumerOrder = ({ _id, consumer, status, orderItems }) => {
+const ConsumerOrder = ({ _id, consumer, status, orderItems, receiveDish }) => {
   return (
     <li>
       <a className="uk-accordion-title">
@@ -21,10 +21,20 @@ const ConsumerOrder = ({ _id, consumer, status, orderItems }) => {
           <tbody>
             {orderItems &&
               orderItems.map((item, index) => (
-                <OrderItem key={`order-item-${index}`} {...item} />
+                <OrderItem
+                  key={`order-item-${index}`}
+                  {...item}
+                  receiveDish={receiveDish}
+                  order_id={_id}
+                />
               ))}
           </tbody>
         </table>
+        {status === "Cerrada" && (
+          <div className="uk-margin uk-text-center">
+            <button className="uk-button uk-button-primary">Ver cuenta</button>
+          </div>
+        )}
       </div>
     </li>
   );

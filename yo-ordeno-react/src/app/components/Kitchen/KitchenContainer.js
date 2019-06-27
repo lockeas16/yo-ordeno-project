@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { createSocket } from "../../services/kitchenService";
+import { createSocket, updateDish } from "../../services/kitchenService";
+import { notification } from "../../utils/utils";
 import ConsumerOrder from "./ConsumerOrder";
 
 class KitchenContainer extends Component {
@@ -34,6 +35,18 @@ class KitchenContainer extends Component {
     });
   };
 
+  receiveDish = (e, order_id, dish_id) => {
+    const { socket, restaurant, table } = this.state;
+    updateDish(restaurant, order_id, dish_id)
+      .then(order => {
+        socket.emit("updated-dish", restaurant, table);
+        notification(order.message, "success");
+      })
+      .catch(error => {
+        return notification(error.action);
+      });
+  };
+
   render() {
     const { orders } = this.state;
     return (
@@ -53,6 +66,7 @@ class KitchenContainer extends Component {
                   key={`order-${index}`}
                   {...order}
                   orderItems={order.dishes}
+                  receiveDish={this.receiveDish}
                 />
               ))}
           </ul>

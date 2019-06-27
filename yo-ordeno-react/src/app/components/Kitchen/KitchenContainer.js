@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { createSocket, updateDish } from "../../services/kitchenService";
 import { notification } from "../../utils/utils";
 import ConsumerOrder from "./ConsumerOrder";
+import BillModal from "./BillModal";
 
 class KitchenContainer extends Component {
   constructor(props) {
@@ -31,6 +32,13 @@ class KitchenContainer extends Component {
     const { socket, restaurant, table } = this.state;
     socket.emit("connected", restaurant, table);
     socket.on("orders", data => {
+      // computing the total for each order
+      data.forEach((element, index) => {
+        data[index].total = element.dishes.reduce(
+          (acc, dish) => (acc += dish.dish.price * dish.quantity),
+          0
+        );
+      });
       this.setState({ orders: data });
     });
   };
@@ -71,6 +79,15 @@ class KitchenContainer extends Component {
               ))}
           </ul>
         </div>
+        {orders &&
+          orders.map((order, index) => (
+            <BillModal
+              key={`bill-${index}`}
+              _id={order._id}
+              total={order.total}
+              dishes={order.dishes}
+            />
+          ))}
       </section>
     );
   }

@@ -32,7 +32,12 @@ const ConsumerOrder = ({ _id, consumer, status, orderItems, receiveDish }) => {
         </table>
         {status === "Cerrada" && (
           <div className="uk-margin uk-text-center">
-            <button className="uk-button uk-button-primary">Ver cuenta</button>
+            <button
+              className="uk-button uk-button-primary"
+              uk-toggle={`target: #order-${_id}`}
+            >
+              Ver cuenta
+            </button>
           </div>
         )}
       </div>

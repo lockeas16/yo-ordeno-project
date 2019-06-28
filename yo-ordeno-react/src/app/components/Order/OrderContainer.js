@@ -152,16 +152,6 @@ class OrderContainer extends Component {
         className="uk-section uk-text-center uk-overflow-hidden"
         uk-height-viewport="offset-top: true; expand: true"
       >
-        {/* <section className="uk-section uk-section-muted uk-section-xsmall uk-padding-remove-vertical">
-          <div className="uk-container uk-container-expand">
-            <nav
-              className="uk-navbar-container uk-navbar-transparent"
-              uk-navbar="true"
-            >
-              <div className="uk-navbar-center">Steps</div>
-            </nav>
-          </div>
-        </section> */}
         <div className="uk-container uk-container-expand">
           <StepWizard>
             <Step1

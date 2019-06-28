@@ -12,7 +12,7 @@ const categories = [
   "Platillo principal"
 ];
 
-const DishForm = ({ handleSubmit, handleChange, setImage, dish, props }) => {
+const DishForm = ({ handleSubmit, handleChange, setImage, dish }) => {
   const { name, description, category, image, price, _id } = dish;
 
   return (

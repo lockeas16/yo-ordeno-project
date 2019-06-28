@@ -1,11 +1,6 @@
 import axios from "axios";
 import { getBaseUrl } from "./properties";
 
-// Creamos el header con el token
-// axios.defaults.headers = {
-//   Authorization: localStorage.getItem("TOKEN")
-// };
-
 export const signup = auth => {
   return axios
     .post(`${getBaseUrl()}/auth/signup`, auth)

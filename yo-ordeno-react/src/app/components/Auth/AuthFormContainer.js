@@ -42,7 +42,6 @@ class AuthFormContainer extends Component {
     const { passwordConfirm, ...user } = auth;
     signup(user)
       .then(({ message }) => {
-        // enviar mensaje de confirmación de correo
         auth = {
           name: "",
           lastname: "",

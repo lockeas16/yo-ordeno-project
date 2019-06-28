@@ -84,7 +84,6 @@ class DashboardContainer extends Component {
   handleChange = e => {
     const field = e.target.name;
     const { dish } = this.state;
-    // se manda como objeto ya que el state tiene varios objetos
     dish[field] = e.target.value;
     this.setState({ dish });
   };

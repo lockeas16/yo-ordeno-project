@@ -14,7 +14,7 @@ const LoggedNav = ({ email, image, name, lastname, handleLogout }) => (
     </button>
 
     <div uk-dropdown="mode: click; pos: bottom-right" id="drop-menu">
-      <ul className="uk-nav uk-dropdown-nav uk-nav-default uk-nav-center">
+      <ul className="uk-nav uk-dropdown-nav uk-nav-primary uk-nav-center">
         <li>
           <div className="uk-card uk-card-small">
             <div className="uk-card-media-top">

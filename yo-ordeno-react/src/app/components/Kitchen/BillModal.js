@@ -7,9 +7,9 @@ const BillModal = ({ _id, total, dishes }) => (
       <table className="uk-table uk-table-divider uk-table-middle uk-text-center">
         <thead>
           <tr>
-            <th className="uk-text-primary">Platillo</th>
-            <th className="uk-text-primary">Cantidad</th>
-            <th className="uk-text-primary">Precio unitario</th>
+            <th className="uk-text-primary uk-text-center">Platillo</th>
+            <th className="uk-text-primary uk-text-center">Cantidad</th>
+            <th className="uk-text-primary uk-text-center">Precio unitario</th>
           </tr>
         </thead>
         <tbody>
@@ -17,13 +17,13 @@ const BillModal = ({ _id, total, dishes }) => (
             <tr key={index}>
               <td>{dish.dish.name}</td>
               <td>{dish.quantity}</td>
-              <td>{dish.dish.price}</td>
+              <td>$ {dish.dish.price}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <h3>Total: {total}</h3>
+      <h3>Total: $ {total}</h3>
     </div>
   </div>
 );

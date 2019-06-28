@@ -7,6 +7,7 @@ import ProfileContainer from "./app/components/Profile/ProfileContainer";
 import DashboardContainer from "./app/components/Dashboard/DashboardContainer";
 import OrderContainer from "./app/components/Order/OrderContainer";
 import KitchenContainer from "./app/components/Kitchen/KitchenContainer";
+import NotFound from "./NotFound";
 
 const Router = ({ user, setUser }) => (
   <Switch>
@@ -48,6 +49,7 @@ const Router = ({ user, setUser }) => (
       path="/kitchen/:restaurant/table/:id"
       render={props => <KitchenContainer {...props} />}
     />
+    <Route component={NotFound} />
   </Switch>
 );
 

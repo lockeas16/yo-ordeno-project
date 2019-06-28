@@ -3,7 +3,7 @@ import React from "react";
 import RemoveAddDishBtn from "./RemoveAddDishBtn";
 
 // prettier-ignore
-const DishMenu = ({_id, name, description, image, price, quantity, removeDishFromOrder, addDishToOrder, editNotesToDish, getQuantityOrdered }) => {
+const DishMenu = ({_id, name, description, category, image, price, quantity, removeDishFromOrder, addDishToOrder, editNotesToDish, getQuantityOrdered }) => {
   const styleImg = {
     backgroundSize: `cover`,
     backgroundPosition: `50% 50%`,
@@ -20,7 +20,7 @@ const DishMenu = ({_id, name, description, image, price, quantity, removeDishFro
   };
 
   return (
-    <li>
+    <li className={`tag-${category.replace(/\s+/g, '-').toLowerCase()}`}>
       <a className="uk-accordion-title">
         <div uk-grid="true" className="uk-margin-remove">
           <div className="uk-width-1-2" style={styleImg} />

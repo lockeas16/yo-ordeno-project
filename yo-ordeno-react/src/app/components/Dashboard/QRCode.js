@@ -5,7 +5,7 @@ const QRCodeComp = ({ url }) => (
   <QRCode
     value={url}
     bgColor={"rgba(0,0,0,0)"}
-    size={512}
+    size={256}
     level={"L"}
     includeMargin={true}
     renderAs={"svg"}

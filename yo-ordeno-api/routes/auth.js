@@ -11,7 +11,7 @@ const mailer = require("../helpers/mailer");
 
 const isProduction = process.env.NODE_ENV === "production";
 const base_url = isProduction
-  ? "https://yo-ordeno.herokuapp.com/"
+  ? "https://yo-ordeno.herokuapp.com"
   : "http://localhost:3001";
 
 router.post("/signup", (req, res, next) => {

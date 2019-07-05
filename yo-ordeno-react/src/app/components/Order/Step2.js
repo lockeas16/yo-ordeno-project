@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import DishMenu from "./DishMenu";
+import ScrollUpButton from "react-scroll-up-button";
 
 const Step2 = ({
   dishesMenu,
@@ -12,6 +13,7 @@ const Step2 = ({
   ...props
 }) => (
   <div>
+    <ScrollUpButton />
     <h1>Escoge lo que quieres ordenar</h1>
     <section className="uk-margin" uk-sticky="true">
       <div className="uk-button-group">

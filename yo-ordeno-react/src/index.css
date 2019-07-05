@@ -205,6 +205,20 @@ code {
   font-size: 0.7rem;
 }
 
+.button-white {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border: 1px solid #e5e5e5;
+}
+
+.reset-line-height{
+  line-height: initial !important;
+}
+
+.border-highlight{
+  border: 1px solid #3c1518;
+}
+
 /* UIkit override */
 .uk-dropdown {
   background: rgba(0, 0, 0, 0.7);

@@ -122,7 +122,6 @@ class OrderContainer extends Component {
         // we send an event to back so it can be emitted
         const socket = createSocket();
         socket.emit("new-dish", restaurant, order.table);
-
         setTimeout(() => {
           this.props.history.push(
             `/kitchen/${restaurant}/table/${order.table}`

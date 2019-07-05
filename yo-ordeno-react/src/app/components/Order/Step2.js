@@ -13,6 +13,21 @@ const Step2 = ({
 }) => (
   <div>
     <h1>Escoge lo que quieres ordenar</h1>
+    <section className="uk-margin" uk-sticky="true">
+      <div className="uk-button-group">
+        <button className="uk-button button-white" onClick={props.previousStep}>
+          Regresar
+        </button>
+        <button
+          className="uk-button uk-button-primary uk-margin-small-left reset-line-height"
+          onClick={e => {
+            if (handleStep2(e)) props.nextStep();
+          }}
+        >
+          Revisar antes de confirmar
+        </button>
+      </div>
+    </section>
     <div uk-filter="target: .dish-filter">
       <ul className="uk-subnav uk-subnav-pill">
         <li uk-filter-control="">
@@ -50,22 +65,6 @@ const Step2 = ({
             />
           ))}
       </ul>
-    </div>
-    <div className="uk-button-group">
-      <button
-        className="uk-button uk-button-default"
-        onClick={props.previousStep}
-      >
-        Regresar
-      </button>
-      <button
-        className="uk-button uk-button-primary uk-margin-small-left"
-        onClick={e => {
-          if (handleStep2(e)) props.nextStep();
-        }}
-      >
-        Revisar pedido antes de confirmar
-      </button>
     </div>
   </div>
 );
